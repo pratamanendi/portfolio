@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { getTranslation } from '../i18n/translations';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
   
   // Get current language from localStorage or default to 'en'
   const getLang = () => {
@@ -24,6 +29,25 @@ export default function HeroSection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // GSAP fade-in animation for hero section
+  useEffect(() => {
+    if (!heroRef.current) return;
+
+    gsap.fromTo(
+      heroRef.current,
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+      }
+    );
+  }, []);
+
   const containerVars = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
@@ -40,7 +64,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+    <section ref={heroRef} style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
       <motion.div style={{ position: 'absolute', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%)', borderRadius: '50%', top: '10%', right: '10%', pointerEvents: 'none' }} animate={{ x: mousePosition.x * 0.05, y: mousePosition.y * 0.05 }} transition={{ type: 'spring', stiffness: 100, damping: 30 }} />
       <motion.div style={{ position: 'absolute', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(204, 255, 0, 0.05) 0%, transparent 70%)', borderRadius: '50%', bottom: '10%', left: '5%', pointerEvents: 'none' }} animate={{ x: -mousePosition.x * 0.03, y: -mousePosition.y * 0.03 }} transition={{ type: 'spring', stiffness: 100, damping: 30 }} />
 

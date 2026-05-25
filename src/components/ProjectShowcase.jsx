@@ -1,6 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { getTranslation } from '../i18n/translations';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   { id: 1, titleKey: 'projects.project1.title', descKey: 'projects.project1.description', tags: ['React', 'Claude API', 'Streaming', 'TypeScript'], link: '#', color: 'var(--accent-cyan)' },
@@ -13,6 +17,7 @@ const projects = [
 
 export default function ProjectShowcase() {
   const [hoveredId, setHoveredId] = useState(null);
+  const containerRef = useRef(null);
   
   // Get current language from localStorage or default to 'en'
   const getLang = () => {
@@ -25,6 +30,37 @@ export default function ProjectShowcase() {
   const lang = getLang();
   const t = (key) => getTranslation(lang, key);
 
+  // GSAP Stagger animation for project cards
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const cards = containerRef.current.querySelectorAll('[data-project-card]');
+    gsap.fromTo(
+      cards,
+      {
+        opacity: 0,
+        y: 30,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          end: 'top 20%',
+          scrub: false,
+        },
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
     <section id="projects" className="container section" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
       <h2 style={{ marginBottom: '1rem', textAlign: 'center' }}>
@@ -34,10 +70,11 @@ export default function ProjectShowcase() {
         {t('projects.description')}
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+      <div ref={containerRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
         {projects.map((project) => (
           <motion.div
             key={project.id}
+            data-project-card
             style={{ border: '2px solid #333', padding: '2rem', position: 'relative', cursor: 'pointer', overflow: 'hidden' }}
             whileHover={{ y: -5 }}
             onMouseEnter={() => setHoveredId(project.id)}

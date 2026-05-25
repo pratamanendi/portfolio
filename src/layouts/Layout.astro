@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx';
+import SmoothScrollWrapper from '../components/SmoothScrollWrapper.jsx';
+import ScrollProgressBar from '../components/ScrollProgressBar.jsx';
 
 interface Props {
   title: string;
@@ -88,6 +90,8 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     </script>
   </head>
   <body class="grid-bg">
+    <ScrollProgressBar client:load />
+    <SmoothScrollWrapper client:load>
     <nav class="container" style="padding-top: 2rem; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
       <a href="/" style="text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">
         NENDI<span class="text-lime">.</span>
@@ -138,5 +142,6 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         });
       }
     </script>
+    </SmoothScrollWrapper>
   </body>
 </html>

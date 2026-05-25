@@ -1,15 +1,45 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function ScrollReveal({ children, delay = 0, y = 50 }) {
+gsap.registerPlugin(ScrollTrigger);
+
+export default function ScrollReveal({ children, className = '', duration = 0.8, delay = 0 }) {
+  const elementRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!elementRef.current) return;
+
+    gsap.fromTo(
+      elementRef.current,
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration,
+        delay,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: elementRef.current,
+          start: 'top 80%',
+          end: 'top 20%',
+          scrub: false,
+          markers: false,
+        },
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [duration, delay]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <div ref={elementRef} className={className}>
       {children}
-    </motion.div>
+    </div>
   );
 }
