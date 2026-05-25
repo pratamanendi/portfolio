@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx';
 import ScrollProgressBar from '../components/ScrollProgressBar.jsx';
+import LenisScroller from '../components/LenisScroller.jsx';
 
 interface Props {
   title: string;
@@ -89,6 +90,7 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     </script>
   </head>
   <body class="grid-bg">
+    <LenisScroller client:load />
     <ScrollProgressBar client:load />
     <nav class="container" style="padding-top: 2rem; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
       <a href="/" style="text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">
@@ -124,55 +126,6 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
       console.log('✅ Smooth scroll + GSAP ScrollTrigger animations active');
     </script>
     
-    <!-- Lenis smooth scroll initialization - vanilla JS, direct inline -->
-    <script is:inline>
-      (function() {
-        // Wait for DOM fully loaded
-        function initLenis() {
-          const lenisScript = document.createElement('script');
-          lenisScript.src = 'https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.umd.min.js';
-          lenisScript.onload = function() {
-            console.log('📦 Lenis loaded from CDN');
-            
-            // Initialize Lenis instance
-            try {
-              const lenis = new window.Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                direction: 'vertical',
-                gestureDirection: 'vertical',
-                smooth: true,
-                smoothTouch: false,
-                touchMultiplier: 2,
-              });
-
-              function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-              }
-
-              requestAnimationFrame(raf);
-              
-              console.log('✅ Lenis smooth scroll initialized successfully');
-              window.lenis = lenis; // Expose for debugging
-            } catch (e) {
-              console.error('❌ Lenis init error:', e);
-            }
-          };
-          lenisScript.onerror = function() {
-            console.warn('⚠️ Failed to load Lenis from CDN');
-          };
-          document.head.appendChild(lenisScript);
-        }
-
-        // Start init when DOM is ready
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initLenis);
-        } else {
-          initLenis();
-        }
-      })();
-    </script>
     <script>
       // Mobile menu toggle
       const menuToggle = document.getElementById('menuToggle');
