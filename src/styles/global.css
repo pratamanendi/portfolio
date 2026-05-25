@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Dark Geometric/Brutalist Aesthetic */
+  --bg-color: #050505;
+  --surface-color: #111111;
+  --text-main: #f0f0f0;
+  --text-muted: #888888;
+  
+  --accent-lime: #ccff00;
+  --accent-cyan: #00f0ff;
+  --accent-purple: #9d00ff;
+  
+  --font-display: 'Outfit', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  cursor: crosshair; /* Custom cursor for brutalist vibe */
+}
+
+::selection {
+  background: var(--accent-lime);
+  color: #000;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 6vw, 5rem);
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.mono-text {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+.section {
+  padding: var(--spacing-xl) 0;
+}
+
+.text-lime { color: var(--accent-lime); }
+.text-cyan { color: var(--accent-cyan); }
+.text-purple { color: var(--accent-purple); }
+
+/* Grid Background effect */
+.grid-bg {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Button Brutalist */
+.btn-brutal {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #000;
+  background-color: var(--accent-lime);
+  border: 2px solid transparent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-brutal::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--text-main);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.btn-brutal:hover {
+  transform: translate(4px, 4px);
+  background-color: var(--accent-cyan);
+}
+
+.btn-brutal:hover::after {
+  transform: translate(-4px, -4px);
+  border-color: var(--accent-lime);
+}
+
+/* Animations */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Mobile Navigation */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.nav-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-lime);
+}
+
+/* Tablet & Mobile Responsive */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 4rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 0 4vw;
+  }
+
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  /* Mobile Navigation */
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-bottom: 2px solid #333;
+    z-index: 100;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  /* Grid Background - larger on mobile */
+  .grid-bg {
+    background-size: 30px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-lg: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: 0 3vw;
+  }
+
+  .btn-brutal {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .mono-text {
+    font-size: 0.8rem;
+  }
+}

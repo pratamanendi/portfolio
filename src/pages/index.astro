@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro'
+import HeroSection from '../components/HeroSection.jsx'
+import TechStack from '../components/TechStack.jsx'
+import ScrollReveal from '../components/ScrollReveal.jsx'
+import ProjectShowcase from '../components/ProjectShowcase.jsx'
+import ContactCTA from '../components/ContactCTA.jsx'
+---
+
+<Layout title="Nendi Candra | Portfolio">
+  <HeroSection client:load />
+
+  <section id="about" class="container section">
+    <ScrollReveal client:visible y={100}>
+      <div class="about-grid">
+        <div>
+          <h2 data-i18n-key="about.title" style="margin-bottom: 2rem;">
+            ABOUT <span class="text-purple">ME</span>
+          </h2>
+          <p data-i18n-key="about.description1" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.2rem;">
+            I build digital experiences that live at the intersection of bold design and rigorous engineering. As a Frontend Engineer and Fullstack Web Developer, I refuse to settle for generic interfaces.
+          </p>
+          <p data-i18n-key="about.description2" style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.2rem;">
+            Whether it's a lightning-fast static site or a complex web application, I craft solutions that demand attention and perform flawlessly. I'm passionate about AI integration, modern web technologies, and building scalable systems.
+          </p>
+          <a href="/blog" class="btn-brutal" data-i18n-key="about.cta" style="background-color: var(--accent-cyan);">
+            Read My Blog
+          </a>
+        </div>
+        <div style="position: relative;">
+          <div style="width: 100%; aspect-ratio: 1; background: var(--surface-color); border: 2px solid var(--text-main); position: relative; z-index: 1; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800&h=800" alt="Nendi Candra Portrait Placeholder" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2);" />
+          </div>
+          <div style="position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; border: 2px solid var(--accent-lime); z-index: 0;"></div>
+        </div>
+      </div>
+    </ScrollReveal>
+  </section>
+
+  <ProjectShowcase client:visible />
+
+  <ContactCTA client:visible />
+
+  <style>
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</Layout>

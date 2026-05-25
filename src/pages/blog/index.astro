@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import ScrollReveal from "../../components/ScrollReveal.jsx";
+
+const posts = (await getCollection("blog")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+console.log({ posts });
+---
+
+<Layout title="Blog | Nendi Candra">
+	<section class="container section" style="padding-top: 8rem;">
+		<ScrollReveal client:load y={50}>
+			<h1 style="margin-bottom: 4rem;">
+				SYSTEM <span class="text-lime">LOGS</span>
+			</h1>
+
+			<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;">
+				{
+					posts.map((post) => (
+						<a
+							href={`/blog/${post.id}/`}
+							style="text-decoration: none; color: inherit; display: block; padding: 2rem; border: 2px solid #333; background: var(--surface-color); transition: all 0.3s ease;"
+							class="blog-card"
+						>
+							<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;">
+								<h2
+									style="font-size: 2rem; color: var(--text-main);"
+									class="blog-title"
+								>
+									{post.data.title}
+								</h2>
+								<p class="mono-text text-cyan">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+							</div>
+							<p style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px;">
+								{post.data.description}
+							</p>
+						</a>
+					))
+				}
+			</div>
+		</ScrollReveal>
+	</section>
+
+	<style>
+		.blog-card {
+			display: block;
+			padding: 2rem;
+			border: 2px solid #333;
+			background: var(--surface-color);
+			transition: all 0.3s ease;
+		}
+		.blog-card:hover {
+			transform: translate(-5px, -5px);
+			border-color: var(--accent-lime);
+			box-shadow: 5px 5px 0 var(--accent-lime);
+		}
+		.blog-card:hover .blog-title {
+			color: var(--accent-lime);
+		}
+		@media (max-width: 768px) {
+			.blog-card {
+				padding: 1.5rem;
+			}
+			.blog-card:hover {
+				transform: translate(-2px, -2px);
+				box-shadow: 2px 2px 0 var(--accent-lime);
+			}
+		}
+	</style>
+</Layout>

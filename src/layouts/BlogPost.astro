@@ -1,0 +1,147 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Layout from './Layout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": title,
+		"description": description,
+		"image": heroImage ? new URL(heroImage, Astro.url) : new URL('/placeholder-social.jpg', Astro.url),
+		"author": {
+			"@type": "Person",
+			"name": "Nendi Candra",
+			"url": Astro.site ? Astro.site.toString() : "https://nendi-candra.vercel.app"
+		},
+		"datePublished": pubDate.toISOString(),
+		"dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString()
+	})} slot="head" />
+	
+	<article class="container section" style="padding-top: 5rem; max-width: 900px;">
+		<div style="margin-bottom: 4rem;">
+			<div class="mono-text text-cyan" style="margin-bottom: 1rem;">
+				<FormattedDate date={pubDate} />
+				{
+					updatedDate && (
+						<span style="margin-left: 1rem; color: var(--text-muted);">
+							(Updated: <FormattedDate date={updatedDate} />)
+						</span>
+					)
+				}
+			</div>
+			<h1 style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 2rem;">{title}</h1>
+			{heroImage && (
+				<picture style="display: block; margin-bottom: 2rem;">
+					<img 
+						width={1020} 
+						height={510} 
+						src={heroImage} 
+						alt="" 
+						style={{
+							width: '100%',
+							height: 'auto',
+							maxWidth: '100%',
+							border: '2px solid var(--text-main)',
+							display: 'block',
+							objectFit: 'cover',
+						}}
+						loading="lazy"
+					/>
+				</picture>
+			)}
+			<hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;" />
+		</div>
+		
+		<div class="prose" style="font-size: 1.125rem; line-height: 1.8; color: var(--text-main);">
+			<slot />
+		</div>
+
+		<!-- Social Sharing -->
+		<div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+			<span style="color: var(--text-muted); font-size: 0.9rem;">Share:</span>
+			<a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${Astro.url}`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Twitter</a>
+			<a href={`https://www.linkedin.com/sharing/share-offsite/?url=${Astro.url}`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">LinkedIn</a>
+			<a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Facebook</a>
+		</div>
+	</article>
+
+	<style is:global>
+		/* Markdown prose styling for brutalist look */
+		.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+			margin-top: 3rem;
+			margin-bottom: 1.5rem;
+			color: var(--accent-lime);
+		}
+		.prose p {
+			margin-bottom: 1.5rem;
+		}
+		.prose a {
+			color: var(--accent-cyan);
+			text-decoration: underline;
+			text-decoration-style: solid;
+			text-decoration-thickness: 2px;
+			text-underline-offset: 4px;
+		}
+		.prose a:hover {
+			color: var(--accent-lime);
+			background: rgba(204, 255, 0, 0.1);
+		}
+		.prose blockquote {
+			border-left: 4px solid var(--accent-purple);
+			padding-left: 1.5rem;
+			font-style: italic;
+			color: var(--text-muted);
+			margin-bottom: 1.5rem;
+		}
+		.prose code {
+			font-family: var(--font-mono);
+			background: var(--surface-color);
+			padding: 0.2em 0.4em;
+			color: var(--accent-cyan);
+		}
+		.prose pre {
+			background: #000 !important;
+			border: 1px solid #333;
+			padding: 1.5rem;
+			margin-bottom: 2rem;
+			overflow-x: auto;
+		}
+		.prose pre code {
+			background: transparent;
+			padding: 0;
+			color: inherit;
+		}
+		.prose ul, .prose ol {
+			margin-bottom: 1.5rem;
+			padding-left: 2rem;
+		}
+	.prose img {
+		width: 100%;
+		height: auto;
+		max-width: 100%;
+		display: block;
+		margin: 2rem 0;
+		border: 2px solid var(--text-main);
+	}
+
+	@media (max-width: 768px) {
+		.prose img {
+			margin: 1.5rem 0;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.prose img {
+			margin: 1rem 0;
+			border: 1px solid var(--text-main);
+		}
+	}
+	</style>
+</Layout>
