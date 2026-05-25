@@ -1,8 +1,5 @@
 ---
 import '../styles/global.css';
-import LanguageSwitcher from '../components/LanguageSwitcher.jsx';
-import ScrollProgressBar from '../components/ScrollProgressBar.jsx';
-import GSAPScrollSmoother from '../components/GSAPScrollSmoother.jsx';
 
 interface Props {
   title: string;
@@ -44,54 +41,8 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         "https://linkedin.com/in/nendicandra"
       ]
     })} />
-    <!-- Translation Setup -->
-    <script type="module">
-      import { translations } from '/src/i18n/translations.js';
-      
-      // Get language from localStorage or default to 'en'
-      function getLanguage() {
-        return localStorage.getItem('language') || 'en';
-      }
-
-      // Set language on html element
-      function setLanguageAttribute() {
-        const lang = getLanguage();
-        document.documentElement.lang = lang;
-      }
-
-      // Translate static HTML elements with data-i18n attribute
-      function translateStaticElements() {
-        const dict = translations[getLanguage()] || translations.en;
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          const keys = key.split('.');
-          let value = dict;
-          for (const k of keys) {
-            if (value == null) return;
-            value = value[k];
-          }
-          if (value != null) {
-            el.textContent = value;
-          }
-        });
-      }
-
-      // Run translation on DOM load
-      document.addEventListener('DOMContentLoaded', () => {
-        setLanguageAttribute();
-        translateStaticElements();
-      });
-
-      // Also translate when language changes
-      window.addEventListener('languageChanged', () => {
-        setLanguageAttribute();
-        translateStaticElements();
-      });
-    </script>
   </head>
   <body class="grid-bg">
-    <GSAPScrollSmoother client:load />
-    <ScrollProgressBar client:load />
     <nav class="container" style="padding-top: 2rem; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
       <a href="/" style="text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">
         NENDI<span class="text-lime">.</span>
@@ -99,13 +50,10 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
       <div style="display: flex; gap: 1.5rem; align-items: center;">
         <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
         <div class="nav-links" id="navLinks">
-          <a href="/" data-i18n="nav.home">Home</a>
-          <a href="/#projects" data-i18n="nav.projects">Projects</a>
-          <a href="/blog" data-i18n="nav.blog">Blog</a>
-          <a href="/#contact" data-i18n="nav.contact">Contact</a>
-        </div>
-        <div style="display: flex; align-items: center;">
-          <LanguageSwitcher client:load />
+          <a href="/">Home</a>
+          <a href="/#projects">Projects</a>
+          <a href="/blog">Blog</a>
+          <a href="/#contact">Contact</a>
         </div>
       </div>
     </nav>
@@ -114,36 +62,17 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     </main>
     <footer class="container section" style="border-top: 1px solid #333; margin-top: 5rem; text-align: center;">
       <p class="mono-text" style="color: var(--text-muted);">
-        &copy; {new Date().getFullYear()} Nendi Candra. Built with <span class="text-lime">Astro</span> <span data-i18n="footer.and">&amp;</span> <span class="text-cyan">React</span>.
+        &copy; {new Date().getFullYear()} Nendi Candra. Built with <span class="text-lime">Astro</span>.
       </p>
     </footer>
-    <!-- GSAP ScrollTrigger animations already active via components -->
-    <!-- Smooth scroll via GSAP ScrollSmoother -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollSmoother.min.js"></script>
+    <!-- Smooth scroll CSS baseline -->
     <script>
-      // Wait for GSAP to load
-      window.addEventListener('load', function() {
-        try {
-          // Initialize GSAP ScrollSmoother
-          gsap.registerPlugin(ScrollSmoother);
-          const smoother = ScrollSmoother.create({
-            smooth: 1.5,
-            effects: true,
-            normalizeScroll: true,
-          });
-          console.log('✅ GSAP ScrollSmoother initialized');
-        } catch (e) {
-          console.warn('⚠️ ScrollSmoother init failed:', e);
-          // Fallback to CSS smooth scroll
-          document.documentElement.style.scrollBehavior = 'smooth';
-          console.log('✅ Fallback: CSS smooth scroll active');
-        }
-      });
+      document.documentElement.style.scrollBehavior = 'smooth';
+      console.log('✅ Portfolio loaded - smooth scroll active');
     </script>
     
+    <!-- Mobile menu toggle -->
     <script>
-      // Mobile menu toggle
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
 
@@ -152,14 +81,12 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
           navLinks.classList.toggle('active');
         });
 
-        // Close menu when a link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             navLinks.classList.remove('active');
           });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
           if (!e.target.closest('nav')) {
             navLinks.classList.remove('active');

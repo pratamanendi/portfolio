@@ -1,57 +1,171 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import HeroSection from '../components/HeroSection.jsx'
-import TechStack from '../components/TechStack.jsx'
-import ScrollReveal from '../components/ScrollReveal.jsx'
-import ProjectShowcase from '../components/ProjectShowcase.jsx'
-import ContactCTA from '../components/ContactCTA.jsx'
 ---
 
 <Layout title="Nendi Candra | Portfolio">
-  <HeroSection client:load />
-
-  <section id="about" class="container section">
-    <ScrollReveal client:visible y={100}>
-      <div class="about-grid">
-        <div>
-          <h2 data-i18n-key="about.title" style="margin-bottom: 2rem;">
-            ABOUT <span class="text-purple">ME</span>
-          </h2>
-          <p data-i18n-key="about.description1" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.2rem;">
-            I build digital experiences that live at the intersection of bold design and rigorous engineering. As a Frontend Engineer and Fullstack Web Developer, I refuse to settle for generic interfaces.
-          </p>
-          <p data-i18n-key="about.description2" style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.2rem;">
-            Whether it's a lightning-fast static site or a complex web application, I craft solutions that demand attention and perform flawlessly. I'm passionate about AI integration, modern web technologies, and building scalable systems.
-          </p>
-          <a href="/blog" class="btn-brutal" data-i18n-key="about.cta" style="background-color: var(--accent-cyan);">
-            Read My Blog
-          </a>
-        </div>
-        <div style="position: relative;">
-          <div style="width: 100%; aspect-ratio: 1; background: var(--surface-color); border: 2px solid var(--text-main); position: relative; z-index: 1; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800&h=800" alt="Nendi Candra Portrait Placeholder" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2);" />
-          </div>
-          <div style="position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; border: 2px solid var(--accent-lime); z-index: 0;"></div>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div style="text-align: center; padding: 4rem 0;">
+        <p class="mono-text" style="margin-bottom: 1rem;">> SYSTEM_READY: NENDI CANDRA</p>
+        <h1 style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 1rem;">FRONTEND ENGINEER</h1>
+        <h2 style="font-size: clamp(1.5rem, 4vw, 3rem); margin-bottom: 2rem;">& FULLSTACK DEVELOPER</h2>
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Building digital experiences at the intersection of bold design and rigorous engineering.
+        </p>
+        <a href="#projects" class="btn-brutal" style="background-color: var(--accent-cyan); display: inline-block;">
+          EXPLORE SYSTEM
+        </a>
+        <p style="margin-top: 4rem; color: var(--text-muted); font-size: 0.9rem;">// SCROLL DOWN</p>
       </div>
-    </ScrollReveal>
+    </div>
   </section>
 
-  <ProjectShowcase client:visible />
+  <!-- About Section -->
+  <section id="about" class="container section">
+    <div class="about-grid">
+      <div>
+        <h2 style="margin-bottom: 2rem;">ABOUT <span class="text-purple">ME</span></h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.2rem;">
+          I build digital experiences that live at the intersection of bold design and rigorous engineering. As a Frontend Engineer and Fullstack Web Developer, I refuse to settle for generic interfaces.
+        </p>
+        <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.2rem;">
+          Whether it's a lightning-fast static site or a complex web application, I craft solutions that demand attention and perform flawlessly. I'm passionate about AI integration, modern web technologies, and building scalable systems.
+        </p>
+        <a href="/blog" class="btn-brutal" style="background-color: var(--accent-cyan);">
+          READ MY BLOG
+        </a>
+      </div>
+      <div style="position: relative;">
+        <div style="width: 100%; aspect-ratio: 1; background: var(--surface-color); border: 2px solid var(--text-main); position: relative; z-index: 1; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800&h=800" alt="Nendi Candra Portrait Placeholder" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2);" />
+        </div>
+        <div style="position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; border: 2px solid var(--accent-lime); z-index: 0;"></div>
+      </div>
+    </div>
+  </section>
 
-  <ContactCTA client:visible />
+  <!-- Featured Projects -->
+  <section id="projects" class="container section">
+    <h2 style="margin-bottom: 1rem;">FEATURED<span class="text-lime">PROJECTS</span></h2>
+    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin-bottom: 3rem;">
+      A selection of projects showcasing my expertise in frontend development, AI integration, and full-stack engineering.
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;">
+      <a href="#" style="text-decoration: none; color: inherit; display: block; padding: 2rem; border: 2px solid #333; background: var(--surface-color); transition: all 0.3s ease;">
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">AI CHAT INTERFACE</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Real-time chat application powered by Claude API with streaming responses and conversation history.
+        </p>
+        <p class="mono-text" style="font-size: 0.9rem;"><span style="color: var(--accent-cyan);">React</span> • <span style="color: var(--accent-lime);">Claude API</span> • <span style="color: var(--accent-purple);">Streaming</span> • <span style="color: var(--accent-cyan);">TypeScript</span></p>
+      </a>
+
+      <a href="#" style="text-decoration: none; color: inherit; display: block; padding: 2rem; border: 2px solid #333; background: var(--surface-color); transition: all 0.3s ease;">
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">HERMES PORTFOLIO</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Personal portfolio built with Astro, showcasing AI-powered blog and project showcase.
+        </p>
+        <p class="mono-text" style="font-size: 0.9rem;"><span style="color: var(--accent-cyan);">Astro</span> • <span style="color: var(--accent-lime);">React</span> • <span style="color: var(--accent-purple);">AI</span> • <span style="color: var(--accent-cyan);">SSG</span></p>
+      </a>
+
+      <a href="#" style="text-decoration: none; color: inherit; display: block; padding: 2rem; border: 2px solid #333; background: var(--surface-color); transition: all 0.3s ease;">
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">OPENROUTER DASHBOARD</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Dashboard for managing multiple LLM APIs through OpenRouter with cost tracking and model comparison.
+        </p>
+        <p class="mono-text" style="font-size: 0.9rem;"><span style="color: var(--accent-cyan);">Next.js</span> • <span style="color: var(--accent-lime);">OpenRouter</span> • <span style="color: var(--accent-purple);">Analytics</span> • <span style="color: var(--accent-cyan);">Tailwind</span></p>
+      </a>
+
+      <a href="#" style="text-decoration: none; color: inherit; display: block; padding: 2rem; border: 2px solid #333; background: var(--surface-color); transition: all 0.3s ease;">
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">AI CONTENT GENERATOR</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Automated content generation tool using multiple AI models with quality scoring and optimization.
+        </p>
+        <p class="mono-text" style="font-size: 0.9rem;"><span style="color: var(--accent-cyan);">Vue 3</span> • <span style="color: var(--accent-lime);">AI</span> • <span style="color: var(--accent-purple);">Content</span> • <span style="color: var(--accent-cyan);">Automation</span></p>
+      </a>
+
+      <a href="#" style="text-decoration: none; color: inherit; display: block; padding: 2rem; border: 2px solid #333; background: var(--surface-color); transition: all 0.3s ease;">
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">SMART FORM BUILDER</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          AI-powered form builder with intelligent field suggestions and validation using machine learning.
+        </p>
+        <p class="mono-text" style="font-size: 0.9rem;"><span style="color: var(--accent-cyan);">React</span> • <span style="color: var(--accent-lime);">AI</span> • <span style="color: var(--accent-purple);">Forms</span> • <span style="color: var(--accent-cyan);">ML</span></p>
+      </a>
+
+      <a href="#" style="text-decoration: none; color: inherit; display: block; padding: 2rem; border: 2px solid #333; background: var(--surface-color); transition: all 0.3s ease;">
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">CODE REVIEW ASSISTANT</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Automated code review tool that analyzes pull requests and suggests improvements using Claude.
+        </p>
+        <p class="mono-text" style="font-size: 0.9rem;"><span style="color: var(--accent-cyan);">GitHub API</span> • <span style="color: var(--accent-lime);">Claude</span> • <span style="color: var(--accent-purple);">Automation</span> • <span style="color: var(--accent-cyan);">DevOps</span></p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container section">
+    <h2 style="margin-bottom: 2rem;">LET'S<span class="text-lime">COLLABORATE</span></h2>
+    
+    <form style="max-width: 600px; margin: 0 auto;">
+      <div style="margin-bottom: 2rem;">
+        <label style="display: block; margin-bottom: 0.5rem;">Email</label>
+        <input type="email" placeholder="your@email.com" required style="width: 100%; padding: 0.75rem; border: 2px solid #333; background: var(--surface-color); color: var(--text-main); font-family: inherit;" />
+      </div>
+      
+      <div style="margin-bottom: 2rem;">
+        <label style="display: block; margin-bottom: 0.5rem;">Message</label>
+        <textarea placeholder="Tell me about your project..." rows="6" required style="width: 100%; padding: 0.75rem; border: 2px solid #333; background: var(--surface-color); color: var(--text-main); font-family: inherit; resize: vertical;"></textarea>
+      </div>
+      
+      <button type="submit" class="btn-brutal" style="background-color: var(--accent-cyan); width: 100%;">
+        Send Message
+      </button>
+    </form>
+
+    <div style="margin-top: 4rem; text-align: center;">
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">Or connect on social media</p>
+      <div style="display: flex; gap: 2rem; justify-content: center;">
+        <a href="https://github.com/nendicandra" target="_blank" style="color: var(--accent-cyan);">GitHub</a>
+        <a href="https://linkedin.com/in/nendicandra" target="_blank" style="color: var(--accent-lime);">LinkedIn</a>
+        <a href="https://twitter.com/nendicandra" target="_blank" style="color: var(--accent-cyan);">Twitter</a>
+      </div>
+    </div>
+  </section>
 
   <style>
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
     }
+
+    .btn-brutal {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--text-main);
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-brutal:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 2px 2px 0 var(--text-main);
+    }
+
     @media (max-width: 768px) {
       .about-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
       }
     }
   </style>
