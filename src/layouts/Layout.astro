@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx';
 import ScrollProgressBar from '../components/ScrollProgressBar.jsx';
-import LenisScroller from '../components/LenisScroller.jsx';
+import GSAPScrollSmoother from '../components/GSAPScrollSmoother.jsx';
 
 interface Props {
   title: string;
@@ -90,7 +90,7 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     </script>
   </head>
   <body class="grid-bg">
-    <LenisScroller client:load />
+    <GSAPScrollSmoother client:load />
     <ScrollProgressBar client:load />
     <nav class="container" style="padding-top: 2rem; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
       <a href="/" style="text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">
@@ -118,7 +118,7 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
       </p>
     </footer>
     <!-- GSAP ScrollTrigger animations already active via components -->
-    <!-- Smooth scroll via CSS fallback + GSAP -->
+    <!-- Smooth scroll via CSS fallback + GSAP ScrollSmoother -->
     <script>
       // CSS smooth scroll as baseline
       document.documentElement.style.scrollBehavior = 'smooth';
