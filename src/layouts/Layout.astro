@@ -115,15 +115,44 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         &copy; {new Date().getFullYear()} Nendi Candra. Built with <span class="text-lime">Astro</span> <span data-i18n="footer.and">&amp;</span> <span class="text-cyan">React</span>.
       </p>
     </footer>
-    <script type="module">
-      import { initLenisScroll } from '../utils/lenis.ts';
-      
-      // Init Lenis on page load
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => initLenisScroll());
-      } else {
-        initLenisScroll();
-      }
+    <script is:inline>
+      // Direct Lenis init without module import
+      (async () => {
+        try {
+          const { default: Lenis } = await import('https://cdn.jsdelivr.net/npm/lenis@1.1.9/+esm');
+          const { default: gsap } = await import('https://cdn.jsdelivr.net/npm/gsap@3.12.2/+esm');
+          const { ScrollTrigger } = await import('https://cdn.jsdelivr.net/npm/gsap@3.12.2/ScrollTrigger.js');
+
+          gsap.registerPlugin(ScrollTrigger);
+
+          // Init Lenis
+          const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+          });
+
+          // Link Lenis with GSAP ScrollTrigger
+          lenis.on('scroll', ScrollTrigger.update);
+          
+          gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+          });
+          
+          gsap.ticker.lagSmoothing(0);
+
+          window.lenis = lenis;
+          console.log('✓ Lenis scroll initialized');
+        } catch (error) {
+          console.error('✗ Lenis init error:', error);
+        }
+      })();
     </script>
     <script>
       // Mobile menu toggle
