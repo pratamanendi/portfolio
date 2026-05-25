@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ScrollProgressBar from '../components/ScrollProgressBar.jsx';
 
 interface Props {
   title: string;
@@ -43,6 +44,7 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     })} />
   </head>
   <body class="grid-bg">
+    <ScrollProgressBar client:load />
     <nav class="container" style="padding-top: 2rem; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
       <a href="/" style="text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">
         NENDI<span class="text-lime">.</span>
@@ -65,14 +67,15 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         &copy; {new Date().getFullYear()} Nendi Candra. Built with <span class="text-lime">Astro</span>.
       </p>
     </footer>
-    <!-- Smooth scroll CSS baseline -->
+    <!-- GSAP ScrollTrigger animations already active via components -->
+    <!-- Smooth scroll via CSS fallback -->
     <script>
       document.documentElement.style.scrollBehavior = 'smooth';
-      console.log('✅ Portfolio loaded - smooth scroll active');
+      console.log('✅ Smooth scroll + GSAP ScrollTrigger animations active');
     </script>
     
-    <!-- Mobile menu toggle -->
     <script>
+      // Mobile menu toggle
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
 
