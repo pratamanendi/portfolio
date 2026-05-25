@@ -1,57 +1,292 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import HeroSection from '../components/HeroSection.jsx'
-import ScrollReveal from '../components/ScrollReveal.jsx'
-import ProjectShowcase from '../components/ProjectShowcase.jsx'
-import ContactCTA from '../components/ContactCTA.jsx'
 ---
 
 <Layout title="Nendi Candra | Portfolio">
-  <HeroSection client:load />
-
-  <section id="about" class="container section">
-    <ScrollReveal client:visible y={100}>
-      <div class="about-grid">
-        <div>
-          <h2 style="margin-bottom: 2rem;">
-            ABOUT <span class="text-purple">ME</span>
-          </h2>
-          <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.2rem;">
-            I build digital experiences that live at the intersection of bold design and rigorous engineering. As a Frontend Engineer and Fullstack Web Developer, I refuse to settle for generic interfaces.
-          </p>
-          <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.2rem;">
-            Whether it's a lightning-fast static site or a complex web application, I craft solutions that demand attention and perform flawlessly. I'm passionate about AI integration, modern web technologies, and building scalable systems.
-          </p>
-          <a href="/blog" class="btn-brutal" style="background-color: var(--accent-cyan);">
-            Read My Blog
-          </a>
-        </div>
-        <div style="position: relative;">
-          <div style="width: 100%; aspect-ratio: 1; background: var(--surface-color); border: 2px solid var(--text-main); position: relative; z-index: 1; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800&h=800" alt="Nendi Candra Portrait Placeholder" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2);" />
-          </div>
-          <div style="position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; border: 2px solid var(--accent-lime); z-index: 0;"></div>
-        </div>
-      </div>
-    </ScrollReveal>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container" style="text-align: center; padding: 8rem 0 4rem;">
+      <p class="mono-text" style="margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.6s ease forwards;">> SYSTEM_READY: NENDI CANDRA</p>
+      <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.6s ease 0.2s forwards;">FRONTEND ENGINEER</h1>
+      <h2 style="font-size: clamp(1.5rem, 4vw, 3rem); margin-bottom: 2rem; opacity: 0; animation: fadeIn 0.6s ease 0.4s forwards;">& <span class="text-lime">FULLSTACK</span> DEVELOPER</h2>
+      <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; opacity: 0; animation: fadeIn 0.6s ease 0.6s forwards;">
+        Building digital experiences at the intersection of bold design and rigorous engineering.
+      </p>
+      <a href="#projects" class="btn-brutal" style="background-color: var(--accent-cyan); opacity: 0; animation: fadeIn 0.6s ease 0.8s forwards;">
+        EXPLORE SYSTEM
+      </a>
+      <p style="margin-top: 6rem; color: var(--text-muted); font-size: 0.9rem; opacity: 0; animation: fadeIn 0.6s ease 1s forwards;">// SCROLL DOWN</p>
+    </div>
   </section>
 
-  <ProjectShowcase client:visible />
+  <!-- About Section -->
+  <section id="about" class="container section scroll-reveal">
+    <div class="about-grid">
+      <div>
+        <h2 style="margin-bottom: 2rem;">ABOUT <span class="text-purple">ME</span></h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.2rem;">
+          I build digital experiences that live at the intersection of bold design and rigorous engineering. As a Frontend Engineer and Fullstack Web Developer, I refuse to settle for generic interfaces.
+        </p>
+        <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.2rem;">
+          Whether it's a lightning-fast static site or a complex web application, I craft solutions that demand attention and perform flawlessly. I'm passionate about AI integration, modern web technologies, and building scalable systems.
+        </p>
+        <a href="/blog" class="btn-brutal" style="background-color: var(--accent-cyan);">
+          Read My Blog
+        </a>
+      </div>
+      <div style="position: relative;">
+        <div style="width: 100%; aspect-ratio: 1; background: var(--surface-color); border: 2px solid var(--text-main); position: relative; z-index: 1; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800&h=800" alt="Nendi Candra Portrait" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2);" />
+        </div>
+        <div style="position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; border: 2px solid var(--accent-lime); z-index: 0;"></div>
+      </div>
+    </div>
+  </section>
 
-  <ContactCTA client:visible />
+  <!-- Projects Section -->
+  <section id="projects" class="container section scroll-reveal">
+    <h2 style="margin-bottom: 1rem;">FEATURED<span class="text-lime">PROJECTS</span></h2>
+    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin-bottom: 3rem;">
+      A selection of projects showcasing my expertise in frontend development, AI integration, and full-stack engineering.
+    </p>
+    
+    <div class="projects-grid">
+      <a href="#" class="project-card">
+        <h3>AI CHAT INTERFACE</h3>
+        <p>Real-time chat application powered by Claude API with streaming responses and conversation history.</p>
+        <div class="tech-tags">
+          <span class="text-cyan">React</span> • <span class="text-lime">Claude API</span> • <span class="text-purple">Streaming</span>
+        </div>
+      </a>
+
+      <a href="#" class="project-card">
+        <h3>HERMES PORTFOLIO</h3>
+        <p>Personal portfolio built with Astro, showcasing AI-powered blog and project showcase.</p>
+        <div class="tech-tags">
+          <span class="text-cyan">Astro</span> • <span class="text-lime">React</span> • <span class="text-purple">AI</span>
+        </div>
+      </a>
+
+      <a href="#" class="project-card">
+        <h3>OPENROUTER DASHBOARD</h3>
+        <p>Dashboard for managing multiple LLM APIs through OpenRouter with cost tracking.</p>
+        <div class="tech-tags">
+          <span class="text-cyan">Next.js</span> • <span class="text-lime">OpenRouter</span> • <span class="text-purple">Analytics</span>
+        </div>
+      </a>
+
+      <a href="#" class="project-card">
+        <h3>AI CONTENT GENERATOR</h3>
+        <p>Automated content generation tool using multiple AI models with quality scoring.</p>
+        <div class="tech-tags">
+          <span class="text-cyan">Vue 3</span> • <span class="text-lime">AI</span> • <span class="text-purple">Automation</span>
+        </div>
+      </a>
+
+      <a href="#" class="project-card">
+        <h3>SMART FORM BUILDER</h3>
+        <p>AI-powered form builder with intelligent field suggestions and validation.</p>
+        <div class="tech-tags">
+          <span class="text-cyan">React</span> • <span class="text-lime">AI</span> • <span class="text-purple">Forms</span>
+        </div>
+      </a>
+
+      <a href="#" class="project-card">
+        <h3>CODE REVIEW ASSISTANT</h3>
+        <p>Automated code review tool that analyzes pull requests using Claude.</p>
+        <div class="tech-tags">
+          <span class="text-cyan">GitHub API</span> • <span class="text-lime">Claude</span> • <span class="text-purple">DevOps</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container section scroll-reveal">
+    <h2 style="margin-bottom: 2rem;">LET'S<span class="text-lime">COLLABORATE</span></h2>
+    
+    <form action="/api/contact" method="POST" style="max-width: 600px; margin: 0 auto;">
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Email</label>
+        <input type="email" name="email" placeholder="your@email.com" required class="form-input" />
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Message</label>
+        <textarea name="message" placeholder="Tell me about your project..." rows="6" required class="form-input"></textarea>
+      </div>
+      
+      <button type="submit" class="btn-brutal" style="background-color: var(--accent-cyan); width: 100%;">
+        Send Message
+      </button>
+    </form>
+
+    <div style="margin-top: 4rem; text-align: center;">
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">Or connect on social media</p>
+      <div style="display: flex; gap: 2rem; justify-content: center;">
+        <a href="https://github.com/nendicandra" target="_blank" class="social-link">GitHub</a>
+        <a href="https://linkedin.com/in/nendicandra" target="_blank" class="social-link">LinkedIn</a>
+        <a href="https://twitter.com/nendicandra" target="_blank" class="social-link">Twitter</a>
+      </div>
+    </div>
+  </section>
 
   <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
     }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      display: block;
+      padding: 2rem;
+      border: 2px solid #333;
+      background: var(--surface-color);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translate(-5px, -5px);
+      border-color: var(--accent-lime);
+      box-shadow: 5px 5px 0 var(--accent-lime);
+    }
+
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .project-card:hover h3 {
+      color: var(--accent-lime);
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .tech-tags {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .btn-brutal {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border: 2px solid var(--text-main);
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--bg-color);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .btn-brutal:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 3px 3px 0 var(--text-main);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #333;
+      background: var(--surface-color);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .social-link {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--accent-lime);
+    }
+
+    /* Scroll reveal animation */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 768px) {
       .about-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 2px 2px 0 var(--accent-lime);
+      }
     }
   </style>
+
+  <script>
+    // Vanilla JS scroll reveal
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </Layout>
