@@ -115,38 +115,41 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         &copy; {new Date().getFullYear()} Nendi Candra. Built with <span class="text-lime">Astro</span> <span data-i18n="footer.and">&amp;</span> <span class="text-cyan">React</span>.
       </p>
     </footer>
-    <!-- Lenis Smooth Scroll Init -->
-    <script>
-      (async function initLenis() {
-        try {
-          const Lenis = await import('/node_modules/lenis/dist/lenis.js').then(m => m.default);
-          const gsap = await import('/node_modules/gsap/dist/gsap.js').then(m => m.default);
-          const ScrollTrigger = await import('/node_modules/gsap/dist/ScrollTrigger.js').then(m => m.default);
+    <script type="module" define:vars={{}}>
+      // Lenis smooth scroll initialization
+      import Lenis from 'lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-          gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-          const lenis = new Lenis({
-            duration: 1.2,
-            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-            infinite: false,
-          });
+      function initLenisScroll() {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          direction: 'vertical',
+          gestureDirection: 'vertical',
+          smooth: true,
+          mouseMultiplier: 1,
+          smoothTouch: false,
+          touchMultiplier: 2,
+          infinite: false,
+        });
 
-          lenis.on('scroll', ScrollTrigger.update);
-          gsap.ticker.add((time) => lenis.raf(time * 1000));
-          gsap.ticker.lagSmoothing(0);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
 
-          window.lenis = lenis;
-          console.log('✓ Lenis smooth scroll initialized');
-        } catch (error) {
-          console.warn('Lenis init issue:', error.message);
-        }
-      })();
+        window.lenis = lenis;
+        console.log('✓ Lenis smooth scroll ready');
+      }
+
+      // Init when DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLenisScroll);
+      } else {
+        initLenisScroll();
+      }
     </script>
     <script>
       // Mobile menu toggle
