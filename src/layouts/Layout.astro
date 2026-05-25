@@ -115,8 +115,8 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         &copy; {new Date().getFullYear()} Nendi Candra. Built with <span class="text-lime">Astro</span> <span data-i18n="footer.and">&amp;</span> <span class="text-cyan">React</span>.
       </p>
     </footer>
-    <!-- Lenis smooth scroll -->
-    <script is:inline src="/lenis-init.js"></script>
+    <!-- Lenis smooth scroll - SSG compatible -->
+    <script defer src="/lenis-init.js"></script>
     <script>
       // Mobile menu toggle
       const menuToggle = document.getElementById('menuToggle');
