@@ -119,9 +119,9 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     <script>
       (async function initLenis() {
         try {
-          const { default: Lenis } = await import('https://cdn.jsdelivr.net/npm/lenis');
-          const { default: gsap } = await import('https://cdn.jsdelivr.net/npm/gsap');
-          const { ScrollTrigger } = await import('https://cdn.jsdelivr.net/npm/gsap/ScrollTrigger.js');
+          const Lenis = await import('/node_modules/lenis/dist/lenis.js').then(m => m.default);
+          const gsap = await import('/node_modules/gsap/dist/gsap.js').then(m => m.default);
+          const ScrollTrigger = await import('/node_modules/gsap/dist/ScrollTrigger.js').then(m => m.default);
 
           gsap.registerPlugin(ScrollTrigger);
 
@@ -144,7 +144,7 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
           window.lenis = lenis;
           console.log('✓ Lenis smooth scroll initialized');
         } catch (error) {
-          console.warn('Lenis init warning:', error.message);
+          console.warn('Lenis init issue:', error.message);
         }
       })();
     </script>
