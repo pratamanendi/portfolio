@@ -1,6 +1,6 @@
 ---
 title: "Dari Vibecoder ke Coder with AI: Upgrade Cara Kamu Ngoding"
-description: "Panduan transisi dari vibecoder (nyuruh AI random) jadi coder with AI yang punya kontrol penuh — dokumentasi, review kode, dan workflow terstruktur."
+description: "Panduan transisi dari vibecoder (asal suruh AI) jadi coder with AI yang punya kontrol penuh — dokumentasi, review kode, dan workflow terstruktur."
 pubDate: "2026-05-31"
 heroImage: "https://images.unsplash.com/photo-1537432376144-e84978a292a6?auto=format&fit=crop&q=80&w=1200&h=600"
 tags: ["vibecoding", "ai-assisted", "workflow", "productivity", "coding"]
@@ -11,57 +11,57 @@ draft: false
 
 ## TL;DR
 
-- **Apa**: Framework buat upgrade dari vibecoder (asal suruh AI) jadi coder with AI yang paham semua kode, AI cuma alat bantu
-- **Kenapa**: Vibecoding tanpa struktur → tech debt, security hole, kode gak maintainable. Coder with AI → kode bersih, scalable, lo tetap pegang kendali
+- **Apa**: Framework untuk upgrade dari vibecoder (asal suruh AI) menjadi coder with AI yang paham semua kode — AI hanya alat bantu
+- **Kenapa**: Vibecoding tanpa struktur → tech debt, security hole, kode tidak maintainable. Coder with AI → kode bersih, scalable, developer tetap pegang kendali
 - **Cara**: 5 langkah — Project Brief → Tech Stack → AGENTS.md → Architecture → Implementation Plan
 - **Poin Penting**:
-  - Dokumentasi dulu sebelum nulis kode
+  - Dokumentasi dulu sebelum menulis kode
   - Review setiap baris kode AI, jangan terima mentah-mentah
-  - Task kecil, verified tiap step (gak usah satu prompt gede)
-  - AGENTS.md file PALING penting buat AI helper lo
-- **Pro Tip**: Kalo AI ilang besok, kode lo harus tetap bisa dimaintain sendiri
+  - Task kecil, verified tiap step (tidak perlu satu prompt besar)
+  - AGENTS.md adalah file PALING penting untuk AI helper Anda
+- **Pro Tip**: Jika AI hilang besok, kode Anda harus tetap bisa dimaintain sendiri
 
 ---
 
 ## Vibecoder vs Coder with AI
 
-Pernah ngalamin ini? Lo nyuruh AI "bikin fitur X", dapet kode, langsung dipake. Besoknya ada bug, lo balik ke AI lagi minta fix. Sebulan kemudian kode lo jadi spaghetti yang gak ada yang berani sentuh.
+Pernah mengalami situasi ini? Anda meminta AI "buat fitur X", mendapatkan kode, langsung dipakai. Besoknya ada bug, kembali ke AI minta fix. Sebulan kemudian kode jadi spaghetti yang tidak ada yang berani sentuh.
 
-Itu **vibecoder** — dan gapapa, semua mulai dari sana. Tapi kalo lo serius pengen jadi developer profesional yang pake AI sebagai alat, bukan AI yang pake lo, saatnya upgrade.
+Itulah **vibecoder** — dan tidak masalah, semua orang mulai dari sana. Tapi jika Anda serius ingin menjadi developer profesional yang menggunakan AI sebagai alat, bukan AI yang menggunakan Anda, saatnya upgrade.
 
-Udah baca [Vibecoding: Getting Started](/blog/vibecoding-intro/)? Itu langkah pertama. Sekarang saatnya naik level.
+Sudah baca [Vibecoding: Getting Started](/blog/vibecoding-intro/)? Itu langkah pertama. Sekarang saatnya naik level.
 
 | Vibecoder | Coder with AI |
 |---|---|
-| "Bikin fitur X" langsung ke AI | Tulis project brief dulu |
-| Terima aja kode AI apa adanya | Review setiap baris |
-| Gak ada arsitektur | Docs: arsitektur, data flow, tech stack |
+| "Buat fitur X" langsung ke AI | Tulis project brief dulu |
+| Terima kode AI apa adanya | Review setiap baris |
+| Tidak ada arsitektur | Docs: arsitektur, data flow, tech stack |
 | Satu prompt besar → error fatal | Task kecil, verified tiap step |
-| Gak paham error, minta AI fix loop | Debug sistematis, cari root cause |
-| Kode cepet berantakan | Kode terstruktur, maintainable |
-| Lo ngikutin AI | AI ngikutin lo |
+| Tidak paham error, minta AI fix loop | Debug sistematis, cari root cause |
+| Kode cepat berantakan | Kode terstruktur, maintainable |
+| Developer mengikuti AI | AI mengikuti developer |
 
 ## Mindset Shift
 
-### 1. Lo yang pegang kendali
+### 1. Developer yang pegang kendali
 
-AI itu asisten, bukan arsitek. Lo yang tau business logic, domain, constraints. AI cuma nulis implementasi sesuai指令 lo. Kalo lo gak paham kode yang dihasilkan, lo gak siap push ke production.
+AI adalah asisten, bukan arsitek. Developer yang memahami business logic, domain, dan constraints. AI hanya menulis implementasi sesuai instruksi. Jika Anda tidak paham kode yang dihasilkan, Anda belum siap push ke production.
 
 ### 2. Dokumentasi itu investasi
 
-Banyak developer skip dokumentasi karena "ribet". Tapi 15 menit nulis brief bisa Hemat 3 jam debugging di masa depan. Dokumen juga jadi pegangan kalo lo ganti AI tool atau ganti tim.
+Banyak developer skip dokumentasi karena "ribet". Tapi 15 menit menulis brief bisa menghemat 3 jam debugging di masa depan. Dokumen juga menjadi pegangan jika berganti AI tool atau berganti tim.
 
 ### 3. Review adalah skill
 
-Mereview kode AI beda dengan nulis kode sendiri. Lo harus jago liat: "ini logika bener?", "ini aman?", "ini sesuai arsitektur?". Skill review ini yang membedakan vibecoder dari coder with AI.
+Mereview kode AI berbeda dengan menulis kode sendiri. Anda harus mampu menilai: "apakah logika ini benar?", "apakah aman?", "apakah sesuai arsitektur?". Skill review inilah yang membedakan vibecoder dari coder with AI.
 
 ## 5-Step Framework
 
-Ini framework yang gue pake sehari-hari. Adaptasi sesuai project lo.
+Framework ini digunakan sehari-hari. Silakan adaptasi sesuai kebutuhan project Anda.
 
 ### Step 1: Project Brief
 
-Sebelum nulis satu baris kode — bahkan sebelum buka AI — jawab 5W1H:
+Sebelum menulis satu baris kode — bahkan sebelum membuka AI — jawab 5W1H:
 
 ```markdown
 # Project Brief — [Nama Project]
@@ -70,7 +70,7 @@ Sebelum nulis satu baris kode — bahkan sebelum buka AI — jawab 5W1H:
 Kenapa project ini perlu? Problem apa?
 
 ## What? (Scope)
-Apa aja yg masuk scope? out of scope?
+Apa saja yang masuk scope? out of scope?
 
 ## Who? (Audience)
 Siapa target? Client? Rekruter?
@@ -89,7 +89,7 @@ Simpan di `docs/01-PROJECT-BRIEF.md`.
 
 ### Step 2: Tech Stack & Conventions
 
-Dokumen stack biar AI gak asal nambah library baru tiap lo minta fitur:
+Dokumen stack agar AI tidak asal menambah library baru setiap kali Anda minta fitur:
 
 ```markdown
 # Tech Stack & Conventions
@@ -113,7 +113,7 @@ Simpan di `docs/02-TECH-STACK.md`.
 
 ### Step 3: AGENTS.md (PALING PENTING)
 
-Ini file instructions buat AI helper lo. Wajib ada di setiap project:
+File instruksi untuk AI helper. Wajib ada di setiap project:
 
 ```markdown
 # AGENTS.md — AI Instructions
@@ -124,13 +124,13 @@ Ini file instructions buat AI helper lo. Wajib ada di setiap project:
 - **Style/Rules:** conventions, constraints
 
 ## Critical Rules
-1. Tanya kalo ragu
+1. Tanya jika ragu
 2. Jangan tambah library tanpa izin
 3. Build dulu sebelum deploy
 4. File paths dan dependencies
 
 ## What NOT To Do
-- ❌ Jangan pake library yg gak ada di tech stack
+- ❌ Jangan pakai library yang tidak ada di tech stack
 - ❌ Jangan hardcode credentials
 - ❌ Jangan refactor tanpa plan
 
@@ -142,13 +142,13 @@ Ini file instructions buat AI helper lo. Wajib ada di setiap project:
 5. Build & verify
 ```
 
-Simpan di `docs/03-AGENTS.md`. Atau kalo project pake Claude Code, taruh di root sebagai `CLAUDE.md`.
+Simpan di `docs/03-AGENTS.md`. Atau jika project menggunakan Claude Code, taruh di root sebagai `CLAUDE.md`.
 
-> **Kenapa file ini critical?** Karena tanpa instructions, AI bakal asumsinya sendiri. Lo gak mau AI nambahin library Random `lodash` pas lo pake `es-toolkit`, kan?
+> **Kenapa file ini critical?** Karena tanpa instruksi, AI akan membuat asumsi sendiri. Anda pasti tidak ingin AI menambah library random `lodash` padahal Anda menggunakan `es-toolkit`, bukan?
 
 ### Step 4: Architecture & Data Flow
 
-Gambarin component tree sama data flow sebelum implementasi:
+Gambarkan component tree dan data flow sebelum implementasi:
 
 ```markdown
 # Architecture
@@ -171,7 +171,7 @@ Simpan di `docs/04-ARCHITECTURE.md`.
 
 ### Step 5: Implementation Plan
 
-Tiap mulai fitur baru, breakdown ke task-task kecil:
+Setiap memulai fitur baru, breakdown ke task-task kecil:
 
 ```markdown
 # Implementation Plan — [Nama Fitur]
@@ -197,46 +197,46 @@ Tiap mulai fitur baru, breakdown ke task-task kecil:
 
 ### ❌ Vibecoder style:
 
-> "Bikin landing page portfolio ya, pake AI aja, gas"
+> "Bikin landing page portfolio ya, pakai AI aja, gas"
 
-Hasil: layout random, library gak jelas, inconsistent styling, susah diubah.
+Hasil: layout random, library tidak jelas, inconsistent styling, susah diubah.
 
 ### ✅ Coder with AI style:
 
-> "Mau bikin landing page portfolio dengan **tujuan** personal branding sebagai frontend dev. **Target** rekruter tech. **Stack** Astro + Tailwind + Vercel. Ada **3 section**: hero, projects, contact. **Gak usah** pake library animasi berat, cukup CSS transition aja. **Prioritas** performance & SEO."
+> "Mau bikin landing page portfolio dengan **tujuan** personal branding sebagai frontend dev. **Target** rekruter tech. **Stack** Astro + Tailwind + Vercel. Ada **3 section**: hero, projects, contact. **Tidak perlu** library animasi berat, cukup CSS transition. **Prioritas** performance & SEO."
 
-Hasil: kode sesuai kebutuhan, maintainable, lo paham semua keputusan.
+Hasil: kode sesuai kebutuhan, maintainable, developer paham semua keputusan.
 
 ## Recommended Tools
 
-Buat transisi makin lancar, pake tool yang support workflow ini:
+Untuk transisi yang lebih lancar, gunakan tool yang mendukung workflow ini:
 
 - **Hermes Agent** — AI agent yang paham AGENTS.md dan bisa execute multi-step task ([baca guide](/blog/hermes-agent-guide/))
-- **Claude Code** — Terminal-based agentic coding, cocok buat task kompleks ([review di sini](/blog/claude-code-agentic-coding/))
-- **OpenRouter** — Satu API buat banyak LLM, fleksibel ganti model ([panduan](/blog/openrouter-api-guide/))
+- **Claude Code** — Terminal-based agentic coding, cocok untuk task kompleks ([review di sini](/blog/claude-code-agentic-coding/))
+- **OpenRouter** — Satu API untuk banyak LLM, fleksibel ganti model ([panduan](/blog/openrouter-api-guide/))
 
-Baca juga [Best AI Tools for Vibecoding 2026](/blog/vibecoding-tools/) buat perbandingan lengkap.
+Baca juga [Best AI Tools for Vibecoding 2026](/blog/vibecoding-tools/) untuk perbandingan lengkap.
 
 ## Verification Checklist
 
-Sebelum ngaku "selesai", tanya ke diri sendiri:
+Sebelum mengaku "selesai", tanya ke diri sendiri:
 
 - [ ] Saya paham setiap baris kode yang dihasilkan?
-- [ ] Kalo AI ilang besok, saya bisa maintain ini sendiri?
+- [ ] Jika AI hilang besok, saya bisa maintain ini sendiri?
 - [ ] Ada magic numbers / hardcoded values?
 - [ ] Mobile responsive?
-- [ ] Build gak error?
-- [ ] Docs udah diupdate?
+- [ ] Build tidak error?
+- [ ] Docs sudah diupdate?
 - [ ] Ada test untuk edge cases?
 
 ## Next Steps
 
-Udah siap upgrade? Mulai dari:
+Sudah siap upgrade? Mulai dari:
 
-1. Baca ulang [Vibecoding Workflow](/blog/vibecoding-workflow/) — ini dasar workflow yang bagus
-2. Tambahin AGENTS.md ke project lo sekarang — minimal 5 rules
+1. Baca ulang [Vibecoding Workflow](/blog/vibecoding-workflow/) — dasar workflow yang baik
+2. Tambahkan AGENTS.md ke project Anda sekarang — minimal 5 rules
 3. Tulis Project Brief sebelum mulai fitur baru
-4. Biasain review kode AI baris per baris
-5. Ikutin [AI for Frontend Developers Guide](/blog/ai-frontend-developers-guide/) buat resource lengkap
+4. Biasakan review kode AI baris per baris
+5. Ikuti [AI for Frontend Developers Guide](/blog/ai-frontend-developers-guide/) untuk resource lengkap
 
-> **Ingat:** AI itu alat, bukan pengganti otak lo. Makin paham lo sama kode, makin powerful AI bantu lo.
+> **Ingat:** AI adalah alat, bukan pengganti otak Anda. Semakin paham Anda terhadap kode, semakin powerful AI membantu Anda.

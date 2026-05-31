@@ -31,7 +31,7 @@ If you're new to AI-assisted development, start here:
 - [Best AI Tools for Vibecoding in 2026](/blog/vibecoding-tools/) — Comprehensive comparison of Claude, GPT-4o, Cursor, Copilot, and more
 - [Claude Code: Agentic Coding Tool](/blog/claude-code-agentic-coding/) — Hands-on guide to Anthropic's terminal-based agentic coding tool (128K⭐)
 - [Building a Vibecoding Workflow](/blog/vibecoding-workflow/) — From idea to production: a structured approach to AI code generation
-- [Dari Vibecoder ke Coder with AI](/blog/vibecoder-to-coder-with-ai/) — Upgrade cara ngoding: dokumentasi, review kode, dan workflow terstruktur
+- [Dari Vibecoder ke Coder with AI](/blog/vibecoder-to-coder-with-ai/) — Transisi dari vibecoder ke developer profesional: dokumentasi, review kode, dan workflow terstruktur
 
 ### Framework-Specific AI Integration
 
