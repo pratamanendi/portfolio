@@ -99,12 +99,12 @@ p {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(5, 5, 5, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   height: var(--nav-height);
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .nav-logo {
@@ -507,18 +507,21 @@ textarea.form-input {
 
   /* Mobile Navigation */
   .mobile-menu-toggle {
-    display: block;
+    display: flex;
     position: relative;
     z-index: 101;
     min-width: 44px;
     min-height: 44px;
-    display: flex;
     align-items: center;
     justify-content: center;
   }
 
+  .main-nav .container {
+    overflow: hidden;
+  }
+
   .nav-links {
-    display: none;
+    display: none !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -536,7 +539,7 @@ textarea.form-input {
   }
 
   .nav-links.active {
-    display: flex;
+    display: flex !important;
   }
 
   .nav-links a {
