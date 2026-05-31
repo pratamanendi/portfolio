@@ -5,39 +5,179 @@ import FormattedDate from "../../components/FormattedDate.astro";
 import SectionReveal from "../../components/SectionReveal.jsx";
 
 const posts = (await getCollection("blog")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const initialPosts = posts.slice(0, 6);
+const totalPosts = posts.length;
 ---
 
-<Layout title="Blog | Nendi Candra" description="Explore 40+ articles about AI in web development, frontend engineering, vibecoding, and modern web technologies by Nendi Candra. Start with the complete AI for Frontend Developers guide. New: Astro tutorial, freelance guide, and framework comparison.">
-	<section class="container section" style="padding-top: 8rem;">
-		<h1 style="margin-bottom: 4rem;">
-			SYSTEM <span class="text-lime">LOGS</span>
-		</h1>
+<Layout
+  title="Blog | Nendi Candra"
+  description={`Explore ${totalPosts} articles about AI in web development, frontend engineering, vibecoding, and modern web technologies by Nendi Candra. Start with the complete AI for Frontend Developers guide.`}
+>
+  <section class="container section" style="padding-top: 8rem;">
+    <h1 style="margin-bottom: 4rem;">
+      SYSTEM <span class="text-lime">LOGS</span>
+    </h1>
 
-		<SectionReveal client:load>
-			<div class="blog-grid">
-				{
-					posts.map((post) => (
-						<a
-							href={`/blog/${post.id}/`}
-							class="blog-card reveal-item"
-						>
-							<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;">
-								<h2 class="blog-title">
-									{post.data.title}
-								</h2>
-								<p class="mono-text text-cyan">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-							</div>
-							<p>
-								{post.data.description}
-							</p>
-						</a>
-					))
-				}
-			</div>
-		</SectionReveal>
-	</section>
+    <SectionReveal client:load>
+      <div class="blog-grid" id="blog-grid">
+        {
+          initialPosts.map((post) => (
+            <a
+              href={`/blog/${post.id}/`}
+              class="blog-card reveal-item"
+            >
+              <div
+                style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;"
+              >
+                <h2 class="blog-title">
+                  {post.data.title}
+                </h2>
+                <p class="mono-text text-cyan">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </div>
+              <p>
+                {post.data.description}
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </SectionReveal>
+
+    <!-- infinite scroll sentinel -->
+    <div id="scroll-sentinel" style="height: 1px;"></div>
+
+    <!-- loading indicator -->
+    <div
+      id="scroll-loader"
+      style="display: none; text-align: center; padding: 3rem 0;"
+    >
+      <span class="mono-text text-cyan">LOADING...</span>
+    </div>
+
+    <!-- end marker -->
+    <div
+      id="scroll-end"
+      style="display: none; text-align: center; padding: 3rem 0;"
+    >
+      <span class="mono-text text-muted">// NO MORE POSTS //</span>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  (function () {
+    const grid = document.getElementById("blog-grid");
+    const sentinel = document.getElementById("scroll-sentinel");
+    const loader = document.getElementById("scroll-loader");
+    const end = document.getElementById("scroll-end");
+
+    let currentPage = 1;
+    let loading = false;
+    let hasMore = true;
+
+    if (!grid || !sentinel) return;
+
+    function escapeHtml(str) {
+      const div = document.createElement("div");
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    }
+
+    function sentinelVisible() {
+      const rect = sentinel.getBoundingClientRect();
+      const margin = 200;
+      return (
+        rect.top < window.innerHeight + margin &&
+        rect.bottom > -margin
+      );
+    }
+
+    async function loadNextPage() {
+      if (loading || !hasMore) return;
+      loading = true;
+      loader.style.display = "block";
+
+      try {
+        const res = await fetch(`/api/posts/${currentPage + 1}.json`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (!data.hasMore) {
+          hasMore = false;
+          end.style.display = "block";
+        }
+
+        data.posts.forEach((post, i) => {
+          const card = document.createElement("a");
+          card.href = `/blog/${post.id}/`;
+          card.className = "blog-card fade-in";
+          card.style = "animation-delay: " + i * 0.08 + "s";
+          card.innerHTML =
+            '<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;">' +
+            '<h2 class="blog-title">' +
+            escapeHtml(post.title) +
+            "</h2>" +
+            '<p class="mono-text text-cyan">' +
+            escapeHtml(post.pubDate) +
+            "</p>" +
+            "</div>" +
+            "<p>" +
+            escapeHtml(post.description) +
+            "</p>";
+          grid.appendChild(card);
+        });
+
+        currentPage++;
+
+        // Unlock before recursive check (loading is still true from guard above)
+        loading = false;
+
+        // Auto-load next page if sentinel still visible (keeps filling)
+        if (hasMore && sentinelVisible()) {
+          await loadNextPage();
+        }
+      } catch (e) {
+        console.error("Infinite scroll fetch failed:", e);
+        hasMore = false;
+        end.textContent = "// ERROR LOADING POSTS //";
+        end.style.display = "block";
+      } finally {
+        loading = false;
+        loader.style.display = "none";
+      }
+    }
+
+    // IntersectionObserver triggers first load
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading && hasMore) {
+          loadNextPage();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(sentinel);
+  })();
+</script>
+
+<style is:global>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .blog-card.fade-in {
+    animation: fadeInUp 0.7s ease both;
+  }
+</style>
