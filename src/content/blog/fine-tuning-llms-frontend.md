@@ -5,7 +5,6 @@ pubDate: "2026-07-22"
 heroImage: "https://images.unsplash.com/photo-1677442d019cecf8978b4fab7a1ee3d28b13fb3e?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Fine‑tuning LLMs for Frontend Tasks
 
 ## TL;DR
 - **Apa**: Membuat model kecil yang spesifik untuk tugas frontend seperti generate komponen React/Vue, konversi CSS ke utility‑class, dan pembentukan token desain.

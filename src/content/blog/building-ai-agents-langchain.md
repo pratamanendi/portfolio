@@ -5,7 +5,6 @@ pubDate: "2026-07-20"
 heroImage: "https://images.unsplash.com/photo-1677442d019cecf8978b4fab7a1ee3d28b13fb3e?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Building AI Agents with LangChain: A Practical Guide
 
 ## TL;DR
 - **Apa**: Panduan praktis membangun AI agent menggunakan LangChain

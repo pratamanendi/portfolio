@@ -5,7 +5,6 @@ pubDate: "2026-05-24"
 heroImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# AI News Roundup: Perkembangan Terbaru Mei 2026
 
 ## TL;DR
 - **Apa**: Ringkasan perkembangan AI terkini di Mei 2026
@@ -110,6 +109,7 @@ async function streamAIResponse(prompt) {
 
 ## Yang Diharapkan Kedepannya
 
+- [AI Agent Tooling May 2026](/blog/ai-agent-tooling-may-2026/) — Tren ledakan tooling AI agent: knowledge graphs, governance, dan plugin ecosystem
 - Benchmark AI yang ukur real-world impact makin mature
 - Pertumbuhan AI-powered robotics di logistik dan manufacturing
 - Tensi antara inovasi dan regulasi tetap tinggi

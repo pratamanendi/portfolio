@@ -5,7 +5,6 @@ pubDate: "2026-05-09"
 heroImage: "https://images.unsplash.com/photo-1633356122544-f134324ef6db?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Building Scalable Fullstack Apps with Next.js and Laravel
 
 The combination of Next.js and Laravel represents a powerful fullstack architecture. Next.js handles the frontend with server-side rendering and API routes, while Laravel provides a robust backend with excellent ORM and authentication capabilities.
 

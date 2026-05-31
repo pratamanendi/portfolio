@@ -5,7 +5,6 @@ pubDate: "2026-08-10"
 heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Future of AI‑Enhanced CMS
 
 ## TL;DR
 - **Apa**: Tren terbaru di CMS tanpa kepala (headless) yang memanfaatkan AI untuk otomatisasi metadata, generasi konten, dan optimasi SEO.

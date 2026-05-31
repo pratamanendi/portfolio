@@ -5,7 +5,6 @@ pubDate: "2026-05-20"
 heroImage: "https://images.unsplash.com/photo-1633356122544-f134324ef6db?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# AI-Powered Code Generation: From Prompt to Production
 
 The days of manually writing every line of code are numbered. AI-powered code generation is transforming development workflows, enabling developers to focus on architecture and design while AI handles implementation.
 

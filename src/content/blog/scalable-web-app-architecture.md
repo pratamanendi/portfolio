@@ -293,7 +293,6 @@ Use Prometheus + Grafana.
 ### Alerting
 
 ```yaml
-# Alert if error rate > 5%
 alert: HighErrorRate
   expr: error_rate > 0.05
   for: 5m

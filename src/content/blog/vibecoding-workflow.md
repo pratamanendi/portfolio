@@ -5,7 +5,6 @@ pubDate: "2026-05-24"
 heroImage: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Building a Vibecoding Workflow: From Idea to Production
 
 ## TL;DR
 - **What**: A complete workflow for using AI code generation in production development
@@ -28,6 +27,8 @@ Jumping straight to "write me an app" prompts leads to:
 - Missing error handling and edge cases
 - Security vulnerabilities (SQL injection, XSS)
 - Code that doesn't integrate with your existing architecture
+
+If you're new to vibecoding, start with the [Vibecoding: Getting Started](/blog/vibecoding-intro/) guide. For a curated list of the best tools, check [Best AI Tools for Vibecoding in 2026](/blog/vibecoding-tools/).
 
 A structured workflow solves these problems.
 

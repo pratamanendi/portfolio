@@ -5,7 +5,6 @@ pubDate: "2026-05-15"
 heroImage: "https://images.unsplash.com/photo-1633356122544-f134324ef6db?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Vue 3 + AI: Building Reactive Intelligence
 
 Vue 3's composition API and reactivity system make it ideal for building AI-powered applications. The reactive data binding automatically updates your UI as AI processes information in real-time.
 

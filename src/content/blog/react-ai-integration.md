@@ -5,7 +5,6 @@ pubDate: "2026-05-19"
 heroImage: "https://images.unsplash.com/photo-1633356122544-f134324ef6db?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Building AI-Powered React Applications
 
 ## TL;DR
 - **What**: Patterns for integrating AI into React applications

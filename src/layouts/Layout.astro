@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import LenisInit from '../components/LenisInit.jsx';
+import NavScroll from '../components/NavScroll.jsx';
+import ThreeParticles from '../components/ThreeParticles.jsx';
 
 interface Props {
   title: string;
@@ -8,16 +11,19 @@ interface Props {
 
 const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web Developer" } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <!-- Open Graph / Facebook -->
+    <!-- Canonical -->
+    <link rel="canonical" href={Astro.url} />
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
@@ -29,7 +35,7 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL('/placeholder-social.jpg', Astro.url)} />
-    <!-- JSON-LD for GEO -->
+    <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
@@ -41,55 +47,78 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         "https://linkedin.com/in/nendicandra"
       ]
     })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Nendi Candra",
+      "url": Astro.site ? Astro.site.toString() : "https://nendi-candra.vercel.app",
+      "description": "Nendi Candra - Frontend Engineer & Fullstack Web Developer. Portfolio showcasing projects, AI blog, and frontend development expertise.",
+      "author": {
+        "@type": "Person",
+        "name": "Nendi Candra"
+      }
+    })} />
   </head>
   <body class="grid-bg">
-    <nav class="container" style="padding-top: 2rem; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
-      <a href="/" style="text-decoration: none; color: var(--text-main); font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">
-        NENDI<span class="text-lime">.</span>
-      </a>
-      <div style="display: flex; gap: 1.5rem; align-items: center;">
-        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
-        <div class="nav-links" id="navLinks">
-          <a href="/">Home</a>
-          <a href="/#projects">Projects</a>
-          <a href="/blog">Blog</a>
-          <a href="/#contact">Contact</a>
+    <!-- Three.js background particle system -->
+    <ThreeParticles client:visible />
+
+    <!-- Fixed Nav -->
+    <nav class="main-nav">
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center; height: 100%;">
+        <a href="/" class="nav-logo">
+          NENDI<span class="text-lime">.</span>
+        </a>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+          <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+          <div class="nav-links" id="navLinks">
+            <a href="/">Home</a>
+            <a href="/#projects">Projects</a>
+            <a href="/blog">Blog</a>
+            <a href="/#contact">Contact</a>
+          </div>
         </div>
       </div>
     </nav>
+    <NavScroll client:load />
+
+    <!-- Main Content -->
     <main>
       <slot />
     </main>
-    <footer class="container section" style="border-top: 1px solid #333; margin-top: 5rem; text-align: center;">
+
+    <!-- Footer -->
+    <footer class="container section" style="border-top: 1px solid #333; text-align: center;">
       <p class="mono-text" style="color: var(--text-muted);">
         &copy; {new Date().getFullYear()} Nendi Candra. Built with <span class="text-lime">Astro</span>.
       </p>
     </footer>
-    <!-- Smooth scroll CSS baseline -->
+
+    <!-- Lenis smooth scroll init -->
+    <LenisInit client:load />
+
+    <!-- Mobile menu toggle -->
     <script>
-      document.documentElement.style.scrollBehavior = 'smooth';
-      console.log('✅ Portfolio loaded - smooth scroll active');
-    </script>
-    
-    <script>
-      // Mobile menu toggle
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
 
       if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
           navLinks.classList.toggle('active');
+          menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
         navLinks.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            menuToggle.textContent = '☰';
           });
         });
 
         document.addEventListener('click', (e) => {
           if (!e.target.closest('nav')) {
             navLinks.classList.remove('active');
+            menuToggle.textContent = '☰';
           }
         });
       }

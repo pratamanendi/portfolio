@@ -5,7 +5,6 @@ pubDate: "2026-05-05"
 heroImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Crafting Brutalist UIs: Beyond Generic Design Systems
 
 Brutalism in web design is a reaction against the homogenization of digital interfaces. It's about intentionality, raw materials, and rejecting unnecessary ornamentation. A brutalist UI is honest, bold, and unapologetically itself.
 

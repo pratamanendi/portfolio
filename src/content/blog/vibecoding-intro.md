@@ -5,7 +5,6 @@ pubDate: "2026-05-22"
 heroImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Vibecoding: Getting Started with AI-Assisted Development
 
 ## TL;DR
 - **What**: Vibecoding is a programming paradigm where you describe your desired outcome in natural language and AI writes the code.
@@ -23,6 +22,8 @@ heroImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=forma
 ## What is Vibecoding?
 
 Vibecoding is the practice of building software primarily by describing what you want in natural language and letting AI generate the code. The term comes from developer culture — you code based on the *vibe* of what you want to build, rather than typing every line manually.
+
+> 💡 **Part of the [AI for Frontend Developers: Complete Guide](/blog/ai-frontend-developers-guide/) — your central resource for AI-powered frontend development.**
 
 Think of it as pair programming with an AI that never gets tired, never judges your questions, and writes code at superhuman speed.
 
@@ -81,5 +82,7 @@ persist to localStorage. Use TypeScript and CSS modules."
 ## Conclusion
 
 Vibecoding is not a substitute for learning to code — it's a superpower for developers who already understand programming fundamentals. The best vibecoders are experienced engineers who know what good code looks like and can guide the AI to produce it.
+
+Once you've mastered the basics, explore [Best AI Tools for Vibecoding](/blog/vibecoding-tools/) and [Building a Vibecoding Workflow](/blog/vibecoding-workflow/) for production-ready setups.
 
 Start small, review everything, and gradually incorporate vibecoding into your daily workflow. Within weeks, you'll wonder how you ever coded without it.

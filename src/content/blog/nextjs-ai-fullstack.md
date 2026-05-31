@@ -5,7 +5,6 @@ pubDate: "2026-05-14"
 heroImage: "https://images.unsplash.com/photo-1633356122544-f134324ef6db?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Next.js + AI: Full-Stack Intelligence
 
 Next.js is the perfect framework for building full-stack AI applications. API routes, middleware, and edge functions give you everything you need to build intelligent applications at scale.
 

@@ -5,7 +5,6 @@ pubDate: "2026-05-04"
 heroImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Why Astro is the King of Static Site Generators
 
 Astro has fundamentally changed how we approach static site generation. By introducing the concept of "zero JavaScript by default," Astro forces developers to think critically about what needs to be interactive and what can remain static.
 

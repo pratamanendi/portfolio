@@ -5,7 +5,6 @@ pubDate: "2026-05-22"
 heroImage: "https://images.unsplash.com/photo-1677442d019cecf8978b4fab7a1ee3d28b13fb3e?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# OpenRouter: Unified API for Multiple LLMs
 
 Building AI applications is complex. You need to manage multiple API keys, handle different rate limits, and deal with model-specific quirks. OpenRouter solves this by providing a unified interface to dozens of language models.
 

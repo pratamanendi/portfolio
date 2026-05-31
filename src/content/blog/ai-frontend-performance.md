@@ -5,7 +5,6 @@ pubDate: "2026-05-13"
 heroImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Optimizing AI-Powered Frontend Performance
 
 AI features can be slow. API calls, processing, and streaming all add latency. Here's how to keep your AI-powered frontend snappy.
 

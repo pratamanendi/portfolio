@@ -5,7 +5,6 @@ pubDate: "2026-05-23"
 heroImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Hermes Agent: Building AI-Powered Development Workflows
 
 ## TL;DR
 - **What**: Autonomous AI development environment that understands your codebase

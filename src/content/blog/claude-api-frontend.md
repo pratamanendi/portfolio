@@ -5,7 +5,6 @@ pubDate: "2026-05-21"
 heroImage: "https://images.unsplash.com/photo-1633356122544-f134324ef6db?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Integrating Claude API into Your Frontend Applications
 
 Claude API opens up possibilities for building truly intelligent frontend experiences. Whether you're building a chat interface, content generator, or code assistant, Claude can power it all.
 

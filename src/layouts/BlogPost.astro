@@ -3,9 +3,11 @@ import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+  related?: CollectionEntry<'blog'>[];
+};
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, related } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
@@ -24,7 +26,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		"dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString()
 	})} slot="head" />
 	
-	<article class="container section" style="padding-top: 5rem; max-width: 900px;">
+	<article class="container" style="padding-top: 6rem; max-width: 900px; margin-bottom: 6rem;">
 		<div style="margin-bottom: 4rem;">
 			<div class="mono-text text-cyan" style="margin-bottom: 1rem;">
 				<FormattedDate date={pubDate} />
@@ -43,7 +45,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						width={1020} 
 						height={510} 
 						src={heroImage} 
-						alt="" 
+						alt={title}
 						style={{
 							width: '100%',
 							height: 'auto',
@@ -59,18 +61,43 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			<hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;" />
 		</div>
 		
-		<div class="prose" style="font-size: 1.125rem; line-height: 1.8; color: var(--text-main);">
+		<div class="prose">
 			<slot />
 		</div>
 
 		<!-- Social Sharing -->
-		<div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+		<div style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid #333; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
 			<span style="color: var(--text-muted); font-size: 0.9rem;">Share:</span>
 			<a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${Astro.url}`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Twitter</a>
 			<a href={`https://www.linkedin.com/sharing/share-offsite/?url=${Astro.url}`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">LinkedIn</a>
 			<a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Facebook</a>
 		</div>
 	</article>
+
+	<!-- Related Posts (inside Layout = above footer) -->
+	{
+		related && related.length > 0 && (
+			<section style="max-width: 900px; margin: 0 auto 6rem; padding: 0 5vw;">
+				<h2 style="margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: -0.02em;">
+					Related <span class="text-lime">Posts</span>
+				</h2>
+				<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+					{
+						related.map((r) => (
+							<a href={`/blog/${r.id}/`} class="blog-card" style="padding: 1.5rem;">
+								<h3 style="font-size: 1.1rem; text-transform: none; letter-spacing: normal; margin-bottom: 0.5rem; transition: color 0.3s ease;">
+									{r.data.title}
+								</h3>
+								<p style="font-size: 0.9rem; color: var(--text-muted);">
+									{r.data.description}
+								</p>
+							</a>
+						))
+					}
+				</div>
+			</section>
+		)
+	}
 
 	<style is:global>
 		/* Markdown prose styling for brutalist look */
@@ -122,26 +149,26 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			margin-bottom: 1.5rem;
 			padding-left: 2rem;
 		}
-	.prose img {
-		width: 100%;
-		height: auto;
-		max-width: 100%;
-		display: block;
-		margin: 2rem 0;
-		border: 2px solid var(--text-main);
-	}
-
-	@media (max-width: 768px) {
 		.prose img {
-			margin: 1.5rem 0;
+			width: 100%;
+			height: auto;
+			max-width: 100%;
+			display: block;
+			margin: 2rem 0;
+			border: 2px solid var(--text-main);
 		}
-	}
 
-	@media (max-width: 480px) {
-		.prose img {
-			margin: 1rem 0;
-			border: 1px solid var(--text-main);
+		@media (max-width: 768px) {
+			.prose img {
+				margin: 1.5rem 0;
+			}
 		}
-	}
+
+		@media (max-width: 480px) {
+			.prose img {
+				margin: 1rem 0;
+				border: 1px solid var(--text-main);
+			}
+		}
 	</style>
 </Layout>

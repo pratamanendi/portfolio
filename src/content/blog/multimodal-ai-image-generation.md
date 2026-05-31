@@ -5,7 +5,6 @@ pubDate: "2026-08-05"
 heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Multimodal AI for Image Generation
 
 ## TL;DR
 - **Apa**: Menggunakan model visi‑bahasa seperti GPT‑4o atau Claude 3 untuk menghasilkan gambar dari teks prompt (mockup UI, ikon, ilustrasi).

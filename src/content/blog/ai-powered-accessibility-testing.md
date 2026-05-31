@@ -5,7 +5,6 @@ pubDate: "2026-08-08"
 heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# AI‑Powered Accessibility Testing
 
 ## TL;DR
 - **Apa**: Menggunakan model bahasa besar untuk menganalisis kode frontend (HTML, CSS, JS) dan melaporkan masalah aksesibilitas seperti kontras warna, navigasi keyboard, label ARIA, dan_role yang tidak sesuai.

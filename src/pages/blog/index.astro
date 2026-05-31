@@ -2,73 +2,42 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
+import SectionReveal from "../../components/SectionReveal.jsx";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
-<Layout title="Blog | Nendi Candra">
+<Layout title="Blog | Nendi Candra" description="Explore 40+ articles about AI in web development, frontend engineering, vibecoding, and modern web technologies by Nendi Candra. Start with the complete AI for Frontend Developers guide. New: Astro tutorial, freelance guide, and framework comparison.">
 	<section class="container section" style="padding-top: 8rem;">
 		<h1 style="margin-bottom: 4rem;">
 			SYSTEM <span class="text-lime">LOGS</span>
 		</h1>
 
-		<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;">
-			{
-				posts.map((post) => (
-					<a
-						href={`/blog/${post.id}/`}
-						class="blog-card"
-					>
-						<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;">
-							<h2 class="blog-title">
-								{post.data.title}
-							</h2>
-							<p class="mono-text text-cyan">
-								<FormattedDate date={post.data.pubDate} />
+		<SectionReveal client:load>
+			<div class="blog-grid">
+				{
+					posts.map((post) => (
+						<a
+							href={`/blog/${post.id}/`}
+							class="blog-card reveal-item"
+						>
+							<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;">
+								<h2 class="blog-title">
+									{post.data.title}
+								</h2>
+								<p class="mono-text text-cyan">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+							</div>
+							<p>
+								{post.data.description}
 							</p>
-						</div>
-						<p style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px;">
-							{post.data.description}
-						</p>
-					</a>
-				))
-			}
-		</div>
+						</a>
+					))
+				}
+			</div>
+		</SectionReveal>
 	</section>
-
-	<style>
-		.blog-card {
-			display: block;
-			padding: 2rem;
-			border: 2px solid #333;
-			background: var(--surface-color);
-			transition: all 0.3s ease;
-			text-decoration: none;
-			color: inherit;
-		}
-		.blog-card:hover {
-			transform: translate(-5px, -5px);
-			border-color: var(--accent-lime);
-			box-shadow: 5px 5px 0 var(--accent-lime);
-		}
-		.blog-title {
-			font-size: 1.5rem;
-			color: var(--text-main);
-			transition: color 0.3s ease;
-		}
-		.blog-card:hover .blog-title {
-			color: var(--accent-lime);
-		}
-		@media (max-width: 768px) {
-			.blog-card {
-				padding: 1.5rem;
-			}
-			.blog-card:hover {
-				transform: translate(-2px, -2px);
-				box-shadow: 2px 2px 0 var(--accent-lime);
-			}
-		}
-	</style>
 </Layout>

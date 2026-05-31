@@ -5,7 +5,6 @@ pubDate: "2026-05-18"
 heroImage: "https://images.unsplash.com/photo-1516321318423-f06f70d504f0?auto=format&fit=crop&q=80&w=1200&h=600"
 ---
 
-# Mastering LLM Prompt Engineering for Frontend Developers
 
 ## TL;DR
 - **What**: Art of writing effective prompts for AI models
