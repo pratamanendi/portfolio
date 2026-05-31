@@ -55,6 +55,7 @@ const { title, description, pubDate, updatedDate, heroImage, related } = Astro.p
 							objectFit: 'cover',
 						}}
 						loading="lazy"
+						onerror="this.parentElement.remove()"
 					/>
 				</picture>
 			)}
