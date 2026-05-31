@@ -29,6 +29,7 @@ If you're new to AI-assisted development, start here:
 
 - [Vibecoding: Getting Started](/blog/vibecoding-intro/) — A beginner's guide to building applications by describing what you want in natural language
 - [Best AI Tools for Vibecoding in 2026](/blog/vibecoding-tools/) — Comprehensive comparison of Claude, GPT-4o, Cursor, Copilot, and more
+- [Claude Code: Agentic Coding Tool](/blog/claude-code-agentic-coding/) — Hands-on guide to Anthropic's terminal-based agentic coding tool (128K⭐)
 - [Building a Vibecoding Workflow](/blog/vibecoding-workflow/) — From idea to production: a structured approach to AI code generation
 
 ### Framework-Specific AI Integration
@@ -102,6 +103,7 @@ As AI becomes embedded in our workflows, ethical considerations are crucial:
 - [Fine-Tuning LLMs for Frontend Tasks](/blog/fine-tuning-llms-frontend/) — Creating task-specific models with LoRA/QLoRA
 - [Migrating Legacy Frontends with AI](/blog/hermes-frontend-legacy-migration/) — Using Hermes Agent to migrate jQuery/Vanilla JS to React/Vue
 - [Scalable Web App Architecture](/blog/scalable-web-app-architecture/) — Building production-ready web applications
+- [12-Factor Agents: Prinsip Production-Ready LLM Apps](/blog/12-factor-agents-llm-apps/) — Framework for building reliable, maintainable LLM-powered software
 - [Geo-Optimization: Building Location-Aware Apps](/blog/geo-optimization/) — Location-based services and geolocation APIs
 
 ## AI News & Updates
@@ -111,6 +113,7 @@ Stay current with the latest developments:
 - [AI Trends Q3 2026: What Developers Need to Know](/blog/ai-trends-2026-q3/) — Quarterly roundup of AI releases and model updates
 - [AI News Roundup: May 2026](/blog/latest-ai-news-may-2026/) — Latest AI developments in Bahasa Indonesia
 - [AI Agent Tooling May 2026: Knowledge Graphs, Governance & Plugins](/blog/ai-agent-tooling-may-2026/) — Tren terkini tooling AI agent, code knowledge graphs, dan Microsoft Agent Governance Toolkit
+- [OpenRouter $113M Series B: Era Baru Unified AI API](/blog/openrouter-series-b-2026/) — Analisis dampak funding besar OpenRouter buat developer AI
 - [The Impact of Generative AI on Web Development](/blog/ai-impact-webdev/) — How generative AI is changing the web development landscape
 
 ## Getting Started Checklist

@@ -1,32 +1,59 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import HeroAnimations from '../components/HeroAnimations.jsx'
-import TextReveal from '../components/TextReveal.jsx'
-import ProjectCard3D from '../components/ProjectCard3D.jsx'
-import SectionReveal from '../components/SectionReveal.jsx'
+import Layout from "../layouts/Layout.astro";
+import HeroAnimations from "../components/HeroAnimations.jsx";
+import TextReveal from "../components/TextReveal.jsx";
+import TextTyping from "../components/TextTyping.jsx";
+import ProjectCard3D from "../components/ProjectCard3D.jsx";
+import SectionReveal from "../components/SectionReveal.jsx";
 ---
 
-<Layout title="Nendi Candra | Frontend Engineer & Fullstack Web Developer" description="Portfolio of Nendi Candra — Frontend Engineer specializing in React, Next.js, Vue, and AI-powered web development. Explore projects, blog, and open-source work.">
+<Layout
+  title="Nendi Candra | Frontend Engineer & Fullstack Web Developer"
+  description="Portfolio of Nendi Candra — Frontend Engineer specializing in React, Next.js, Vue, and AI-powered web development. Explore projects, blog, and open-source work."
+>
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <HeroAnimations client:load />
-    <div class="hero-content container" style="padding: 8rem 0 8rem; position: relative; z-index: 2;">
-      <p class="hero-eyebrow mono-text" style="margin-bottom: 1rem; color: var(--accent-cyan);">
+    <div
+      class="hero-content container"
+      style="padding: 8rem 0 8rem; position: relative; z-index: 2;"
+    >
+      <p
+        class="hero-eyebrow mono-text"
+        style="margin-bottom: 1rem; color: var(--accent-cyan);"
+      >
         > SYSTEM_READY: NENDI CANDRA
       </p>
-      <h1 class="hero-title-line reveal-item" style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 0.25rem;">
+      <h1
+        class="hero-title-line reveal-item"
+        style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 0.25rem;"
+      >
         FRONTEND <span class="text-cyan">ENGINEER</span>
       </h1>
-      <h1 class="hero-title-line reveal-item" style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 2rem;">
+      <h1
+        class="hero-title-line reveal-item"
+        style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 2rem;"
+      >
         & <span class="text-lime">FULLSTACK</span> DEVELOPER
       </h1>
-      <p class="hero-sub" style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px;">
-        Building digital experiences at the intersection of bold design and rigorous engineering.
+      <p
+        class="hero-sub"
+        style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px;"
+      >
+        Building digital experiences at the intersection of bold design and
+        rigorous engineering.
       </p>
-      <a href="#projects" class="hero-cta btn-brutal" style="background-color: var(--accent-cyan); color: #000;">
+      <a
+        href="#projects"
+        class="hero-cta btn-brutal"
+        style="background-color: var(--accent-cyan); color: #000;"
+      >
         EXPLORE SYSTEM →
       </a>
-      <p class="hero-scroll-hint mono-text" style="margin-top: 6rem; color: var(--text-muted); font-size: 0.85rem; opacity: 0.5;">
+      <p
+        class="hero-scroll-hint mono-text"
+        style="margin-top: 6rem; color: var(--text-muted); font-size: 0.85rem; opacity: 0.5;"
+      >
         // SCROLL DOWN
       </p>
     </div>
@@ -39,23 +66,33 @@ import SectionReveal from '../components/SectionReveal.jsx'
         <h2 style="margin-bottom: 2rem;">
           ABOUT <span class="text-cyan">ME</span>
         </h2>
-        <TextReveal
+        <TextTyping
           text="I build digital experiences that live at the intersection of bold design and rigorous engineering. As a Frontend Engineer and Fullstack Web Developer, I refuse to settle for generic interfaces."
           as="p"
           client:load
         />
-        <TextReveal
+        <TextTyping
           text="Whether it's a lightning-fast static site or a complex web application, I craft solutions that demand attention and perform flawlessly. I'm passionate about AI integration, modern web technologies, and building scalable systems."
           as="p"
           client:load
+          delay={5.7}
         />
-        <a href="/blog" class="btn-brutal" style="background-color: var(--accent-cyan); margin-top: 2rem; display: inline-block;">
+        <a
+          href="/blog"
+          class="btn-brutal"
+          style="background-color: var(--accent-cyan); margin-top: 2rem; display: inline-block;"
+        >
           READ MY BLOG
         </a>
       </div>
       <div style="position: relative;">
         <div class="portrait-frame">
-          <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800&h=800" alt="Nendi Candra Portrait" class="portrait-img" loading="lazy" />
+          <img
+            src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800&h=800"
+            alt="Nendi Candra Portrait"
+            class="portrait-img"
+            loading="lazy"
+          />
         </div>
         <div class="portrait-offset"></div>
       </div>
@@ -68,67 +105,100 @@ import SectionReveal from '../components/SectionReveal.jsx'
       <h2 class="reveal-item" style="margin-bottom: 1rem;">
         FEATURED <span class="text-lime">PROJECTS</span>
       </h2>
-      <p class="reveal-item" style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin-bottom: 3rem;">
-        A selection of projects showcasing my expertise in frontend development, AI integration, and full-stack engineering.
+      <p
+        class="reveal-item"
+        style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin-bottom: 3rem;"
+      >
+        A selection of projects showcasing my expertise in frontend development,
+        AI integration, and full-stack engineering.
       </p>
 
       <div class="projects-grid">
         <ProjectCard3D href="#" client:load>
           <h3>AI CHAT INTERFACE</h3>
-          <p>Real-time chat application powered by Claude API with streaming responses and conversation history.</p>
+          <p>
+            Real-time chat application powered by Claude API with streaming
+            responses and conversation history.
+          </p>
           <div class="tech-tags">
-            <span class="text-cyan">React</span> <span class="tag-sep">•</span>
-            <span class="text-lime">Claude API</span> <span class="tag-sep">•</span>
+            <span class="text-cyan">React</span>
+            <span class="tag-sep">•</span>
+            <span class="text-lime">Claude API</span>
+            <span class="tag-sep">•</span>
             <span class="text-purple">Streaming</span>
           </div>
         </ProjectCard3D>
 
         <ProjectCard3D href="#" client:load>
           <h3>HERMES PORTFOLIO</h3>
-          <p>Personal portfolio built with Astro, showcasing AI-powered blog and project showcase.</p>
+          <p>
+            Personal portfolio built with Astro, showcasing AI-powered blog and
+            project showcase.
+          </p>
           <div class="tech-tags">
-            <span class="text-cyan">Astro</span> <span class="tag-sep">•</span>
-            <span class="text-lime">React</span> <span class="tag-sep">•</span>
+            <span class="text-cyan">Astro</span>
+            <span class="tag-sep">•</span>
+            <span class="text-lime">React</span>
+            <span class="tag-sep">•</span>
             <span class="text-purple">AI</span>
           </div>
         </ProjectCard3D>
 
         <ProjectCard3D href="#" client:load>
           <h3>OPENROUTER DASHBOARD</h3>
-          <p>Dashboard for managing multiple LLM APIs through OpenRouter with cost tracking.</p>
+          <p>
+            Dashboard for managing multiple LLM APIs through OpenRouter with
+            cost tracking.
+          </p>
           <div class="tech-tags">
-            <span class="text-cyan">Next.js</span> <span class="tag-sep">•</span>
-            <span class="text-lime">OpenRouter</span> <span class="tag-sep">•</span>
+            <span class="text-cyan">Next.js</span>
+            <span class="tag-sep">•</span>
+            <span class="text-lime">OpenRouter</span>
+            <span class="tag-sep">•</span>
             <span class="text-purple">Analytics</span>
           </div>
         </ProjectCard3D>
 
         <ProjectCard3D href="#" client:load>
           <h3>AI CONTENT GENERATOR</h3>
-          <p>Automated content generation tool using multiple AI models with quality scoring.</p>
+          <p>
+            Automated content generation tool using multiple AI models with
+            quality scoring.
+          </p>
           <div class="tech-tags">
-            <span class="text-cyan">Vue 3</span> <span class="tag-sep">•</span>
-            <span class="text-lime">AI</span> <span class="tag-sep">•</span>
+            <span class="text-cyan">Vue 3</span>
+            <span class="tag-sep">•</span>
+            <span class="text-lime">AI</span>
+            <span class="tag-sep">•</span>
             <span class="text-purple">Automation</span>
           </div>
         </ProjectCard3D>
 
         <ProjectCard3D href="#" client:load>
           <h3>SMART FORM BUILDER</h3>
-          <p>AI-powered form builder with intelligent field suggestions and validation.</p>
+          <p>
+            AI-powered form builder with intelligent field suggestions and
+            validation.
+          </p>
           <div class="tech-tags">
-            <span class="text-cyan">React</span> <span class="tag-sep">•</span>
-            <span class="text-lime">AI</span> <span class="tag-sep">•</span>
+            <span class="text-cyan">React</span>
+            <span class="tag-sep">•</span>
+            <span class="text-lime">AI</span>
+            <span class="tag-sep">•</span>
             <span class="text-purple">Forms</span>
           </div>
         </ProjectCard3D>
 
         <ProjectCard3D href="#" client:load>
           <h3>CODE REVIEW ASSISTANT</h3>
-          <p>Automated code review tool that analyzes pull requests using Claude.</p>
+          <p>
+            Automated code review tool that analyzes pull requests using Claude.
+          </p>
           <div class="tech-tags">
-            <span class="text-cyan">GitHub API</span> <span class="tag-sep">•</span>
-            <span class="text-lime">Claude</span> <span class="tag-sep">•</span>
+            <span class="text-cyan">GitHub API</span>
+            <span class="tag-sep">•</span>
+            <span class="text-lime">Claude</span>
+            <span class="tag-sep">•</span>
             <span class="text-purple">DevOps</span>
           </div>
         </ProjectCard3D>
@@ -139,32 +209,72 @@ import SectionReveal from '../components/SectionReveal.jsx'
   <!-- Contact Section -->
   <SectionReveal client:load>
     <section id="contact" class="container section">
-      <h2 style="margin-bottom: 2rem;" class="reveal-item">
+      <h2 style="margin-bottom: 2rem; text-align:center;" class="reveal-item">
         LET'S <span class="text-cyan">COLLABORATE</span>
       </h2>
 
-      <form action="/api/contact" method="POST" style="max-width: 600px; margin: 0 auto;" class="contact-form">
+      <form
+        action="/api/contact"
+        method="POST"
+        style="max-width: 600px; margin: 0 auto;"
+        class="contact-form"
+      >
         <div class="reveal-item" style="margin-bottom: 1.5rem;">
-          <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Email</label>
-          <input type="email" name="email" placeholder="your@email.com" required class="form-input" />
+          <label
+            style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            class="form-input"
+          />
         </div>
 
         <div class="reveal-item" style="margin-bottom: 1.5rem;">
-          <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Message</label>
-          <textarea name="message" placeholder="Tell me about your project..." rows="6" required class="form-input"></textarea>
+          <label
+            style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);"
+            >Message</label
+          >
+          <textarea
+            name="message"
+            placeholder="Tell me about your project..."
+            rows="6"
+            required
+            class="form-input"></textarea>
         </div>
 
-        <button type="submit" class="reveal-item btn-brutal" style="background-color: var(--accent-cyan); width: 100%;">
+        <button
+          type="submit"
+          class="reveal-item btn-brutal"
+          style="background-color: var(--accent-cyan); width: 100%;"
+        >
           SEND MESSAGE →
         </button>
       </form>
 
       <div style="margin-top: 4rem; text-align: center;" class="reveal-item">
-        <p style="margin-bottom: 1rem; color: var(--text-muted);">Or connect on social media</p>
+        <p style="margin-bottom: 1rem; color: var(--text-muted);">
+          Or connect on social media
+        </p>
         <div style="display: flex; gap: 2rem; justify-content: center;">
-          <a href="https://github.com/nendicandra" target="_blank" class="social-link">GitHub</a>
-          <a href="https://linkedin.com/in/nendicandra" target="_blank" class="social-link">LinkedIn</a>
-          <a href="https://x.com/nendicandra" target="_blank" class="social-link">Twitter</a>
+          <a
+            href="https://github.com/nendicandra"
+            target="_blank"
+            class="social-link">GitHub</a
+          >
+          <a
+            href="https://linkedin.com/in/nendicandra"
+            target="_blank"
+            class="social-link">LinkedIn</a
+          >
+          <a
+            href="https://x.com/nendicandra"
+            target="_blank"
+            class="social-link">Twitter</a
+          >
         </div>
       </div>
     </section>

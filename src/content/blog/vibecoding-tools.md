@@ -123,3 +123,5 @@ After months of vibecoding daily, here's my toolkit:
 The best vibecoding tool depends on your workflow. For full-stack web development, GPT-4o offers the best balance. For complex systems or enterprise codebases, Claude 4 Opus is unmatched. For daily development velocity, Cursor + Copilot combo is hard to beat.
 
 Experiment with different tools — most offer free trials. Find what fits your *vibe*.
+
+> Baru rilis: **[Claude Code: Agentic Coding Tool](/blog/claude-code-agentic-coding/)** — Anthropic's terminal-based agentic coding tool yang lagi tren (128K⭐). Bedanya dari AI coding tools biasa: dia execute task multi-step secara autonomous langsung di terminal lo.

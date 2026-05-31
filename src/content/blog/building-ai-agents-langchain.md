@@ -169,3 +169,5 @@ LangChain menyediakan kerangka kerja yang fleksibel untuk membangun AI agent yan
 Selanjutnya, coba membangun agent yang membantu Anda dalam tugas harian seperti menghasilkan laporan mingguan, melakukan kode review otomatis, atau mengelola ticket dukungan. Semakin sering Anda ber eksperimen, semakin cepat Anda akan menemukan pola yang paling produktif untuk tim Anda.
 
 Selamat mencoba, dan semoga agent Anda semakin cerdas!
+
+> **Bikin LLM apps yang beneran siap production?** Baca [12-Factor Agents: Prinsip Production-Ready LLM Applications](/blog/12-factor-agents-llm-apps/) — framework dari 22.8K⭐ GitHub repo yang breakdown 12 prinsip build AI apps yang scalable, reliable, dan maintainable.

@@ -47,4 +47,4 @@ const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
 - **Multi-language support** — Route to specialized models for different languages
 - **A/B testing** — Compare model outputs without rewriting code
 
-OpenRouter is a game-changer for developers building AI-powered applications at scale.
+> **OpenRouter baru aja raise $113M Series B.** Baca analisis lengkapnya: [OpenRouter $113M Series B: Era Baru Unified AI API](/blog/openrouter-series-b-2026/)
