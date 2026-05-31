@@ -516,10 +516,6 @@ textarea.form-input {
     justify-content: center;
   }
 
-  .main-nav .container {
-    overflow: hidden;
-  }
-
   .nav-links {
     display: none !important;
     position: fixed;
