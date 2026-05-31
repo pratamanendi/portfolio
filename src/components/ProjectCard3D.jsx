@@ -12,18 +12,33 @@ export default function ProjectCard3D({ children, href = '#', className = '' }) 
     const card = ref.current;
     if (!card) return;
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
     const ctx = gsap.context(() => {
+      if (reduceMotion) {
+        gsap.set(card, { opacity: 1, y: 0 });
+        gsap.set(card.querySelectorAll('*'), { opacity: 1 });
+        return;
+      }
+
       // Scroll reveal
       ScrollTrigger.create({
         trigger: card,
         start: 'top 85%',
         onEnter: () => {
-          gsap.fromTo(card, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' });
+          gsap.fromTo(card, { y: 60, opacity: 0 }, {
+            y: 0, opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out'
+          });
         },
         once: true,
       });
 
-      // Mouse tilt
+      // Mouse tilt - only on devices with actual hover
+      if (!hasHover) return;
+
       const handleMove = (e) => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -44,6 +59,7 @@ export default function ProjectCard3D({ children, href = '#', className = '' }) 
       card.addEventListener('mousemove', handleMove);
       card.addEventListener('mouseleave', handleLeave);
     }, card);
+
     return () => ctx.revert();
   }, []);
 

@@ -79,6 +79,8 @@ const totalPosts = posts.length;
     let currentPage = 1;
     let loading = false;
     let hasMore = true;
+    // Simple in-memory cache for fetched pages
+    const pageCache = {};
 
     if (!grid || !sentinel) return;
 
@@ -103,9 +105,15 @@ const totalPosts = posts.length;
       loader.style.display = "block";
 
       try {
-        const res = await fetch(`/api/posts/${currentPage + 1}.json`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        const nextPage = currentPage + 1;
+        // Check cache first
+        let data = pageCache[nextPage];
+        if (!data) {
+          const res = await fetch(`/api/posts/${nextPage}.json`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          data = await res.json();
+          pageCache[nextPage] = data; // cache it
+        }
 
         if (!data.hasMore) {
           hasMore = false;

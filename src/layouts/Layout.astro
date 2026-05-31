@@ -71,7 +71,8 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
         </a>
         <div style="display: flex; gap: 1.5rem; align-items: center;">
           <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
-          <div class="nav-links" id="navLinks">
+          <!-- Desktop nav links (hidden on mobile) -->
+          <div class="nav-links-desktop" id="navLinksDesktop">
             <a href="/">Home</a>
             <a href="/#projects">Projects</a>
             <a href="/blog">Blog</a>
@@ -81,6 +82,14 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
       </div>
     </nav>
     <NavScroll client:load />
+
+    <!-- Mobile nav overlay (hidden on desktop, body-level to avoid NavScroll transform) -->
+    <div class="nav-links-mobile" id="navLinksMobile">
+      <a href="/">Home</a>
+      <a href="/#projects">Projects</a>
+      <a href="/blog">Blog</a>
+      <a href="/#contact">Contact</a>
+    </div>
 
     <!-- Main Content -->
     <main>
@@ -100,25 +109,29 @@ const { title, description = "Nendi Candra - Frontend Engineer & Fullstack Web D
     <!-- Mobile menu toggle -->
     <script>
       const menuToggle = document.getElementById('menuToggle');
-      const navLinks = document.getElementById('navLinks');
+      const navLinksMobile = document.getElementById('navLinksMobile');
 
-      if (menuToggle && navLinks) {
+      if (menuToggle && navLinksMobile) {
         menuToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+          navLinksMobile.classList.toggle('active');
+          menuToggle.textContent = navLinksMobile.classList.contains('active') ? '✕' : '☰';
+          // Lock body scroll when menu open
+          document.body.style.overflow = navLinksMobile.classList.contains('active') ? 'hidden' : '';
         });
 
-        navLinks.querySelectorAll('a').forEach(link => {
+        navLinksMobile.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+            navLinksMobile.classList.remove('active');
             menuToggle.textContent = '☰';
+            document.body.style.overflow = '';
           });
         });
 
         document.addEventListener('click', (e) => {
-          if (!e.target.closest('nav')) {
-            navLinks.classList.remove('active');
+          if (!e.target.closest('.nav-links-mobile') && !e.target.closest('#menuToggle')) {
+            navLinksMobile.classList.remove('active');
             menuToggle.textContent = '☰';
+            document.body.style.overflow = '';
           }
         });
       }

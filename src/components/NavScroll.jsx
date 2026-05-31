@@ -13,14 +13,28 @@ export default function NavScroll() {
     if (!nav) return;
 
     const ctx = gsap.context(() => {
+      // Reduce motion — nav stays visible
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      // Emil Kowalski: animate transform Y instead of top
+      // useState + window.scrollY is banned per taste-skill Section 5.D
       ScrollTrigger.create({
         start: 'top -80px',
         onUpdate: (self) => {
           const dir = self.direction; // -1 down, 1 up
           if (dir === -1 && window.scrollY > 80) {
-            gsap.to(nav, { top: -nav.offsetHeight, duration: 0.3, ease: 'power2.out' });
+            gsap.to(nav, {
+              y: -nav.offsetHeight,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
           } else if (dir === 1 || window.scrollY < 80) {
-            gsap.to(nav, { top: 0, duration: 0.3, ease: 'power2.out' });
+            gsap.to(nav, {
+              y: 0,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
           }
         },
       });
@@ -28,10 +42,21 @@ export default function NavScroll() {
       // Extra nav strengthen when scrolled
       ScrollTrigger.create({
         start: 'top -40px',
-        onEnter: () => gsap.to(nav, { backgroundColor: 'rgba(5,5,5,0.92)', backdropFilter: 'blur(16px)', duration: 0.3 }),
-        onLeaveBack: () => gsap.to(nav, { backgroundColor: 'rgba(5,5,5,0.95)', backdropFilter: 'blur(16px)', duration: 0.3 }),
+        onEnter: () =>
+          gsap.to(nav, {
+            backgroundColor: 'rgba(5,5,5,0.75)',
+            duration: 0.3,
+            ease: 'power2.out'
+          }),
+        onLeaveBack: () =>
+          gsap.to(nav, {
+            backgroundColor: 'rgba(5,5,5,0.6)',
+            duration: 0.3,
+            ease: 'power2.out'
+          }),
       });
     }, nav);
+
     return () => ctx.revert();
   }, []);
 
